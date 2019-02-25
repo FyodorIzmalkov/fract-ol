@@ -6,11 +6,11 @@
 #    By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/06 12:40:45 by lsandor-          #+#    #+#              #
-#    Updated: 2019/02/15 19:32:55 by lsandor-         ###   ########.fr        #
+#    Updated: 2019/02/25 20:36:22 by lsandor-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
+NAME = fractol
 
 CC = gcc
 FLAGS = -Wall -Werror -Wextra -O3
