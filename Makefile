@@ -6,14 +6,14 @@
 #    By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/06 12:40:45 by lsandor-          #+#    #+#              #
-#    Updated: 2019/02/25 20:36:22 by lsandor-         ###   ########.fr        #
+#    Updated: 2019/02/26 00:12:09 by lsandor-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
 CC = gcc
-FLAGS = -Wall -Werror -Wextra -O3
+FLAGS = #-Wall -Werror -Wextra -O3
 
 LIBRARIES = -lmlx -lm -lft -L$(LIBFT_DIRECTORY) -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
 INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS) -I$(MINILIBX_HEADERS)
@@ -26,7 +26,7 @@ MINILIBX = $(MINILIBX_DIRECTORY)libmlx.a
 MINILIBX_DIRECTORY = ./minilibx_macos/
 MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
 
-HEADERS_LIST = fdf.h\
+HEADERS_LIST = fractol.h\
 
 HEADERS_DIRECTORY = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
@@ -35,13 +35,9 @@ SOURCES_DIRECTORY = ./srcs/
 SOURCES_LIST = main.c\
 			   utilities.c\
 			   initialize.c\
-			   map_reader.c\
+			   fractols.c\
 			   image.c\
-			   print_map.c\
-			   hooks.c\
-			   rotation.c\
 			   color.c\
-			   bonus_things.c\
 
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
