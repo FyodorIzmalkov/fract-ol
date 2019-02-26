@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/02/25 23:58:12 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/02/26 18:45:30 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include "libft.h"
+# include <stdio.h>
 # define W_WIDTH 1500
-# define W_HEIGHT W_WIDTH * 0.8
-# define MAX_ITERATIONS 30
+# define W_HEIGHT 1200
+# define MAX_ITERATIONS 1000
 
 typedef struct s_mondel
 {
@@ -40,8 +41,11 @@ typedef struct s_mondel
 	char	is_inside;
 	int	 y;
 	int x;
-	unsigned iterations;
+	double iterations;
+	float log_zn;
+	float nu;
 }				t_mondel;
+
 typedef struct s_fractol
 {
 	void	*mlx_ptr;
@@ -66,5 +70,5 @@ void	ft_mandelbrot_fractol(t_fractol *f);
 void	ft_initialize_image(t_fractol *f);
 void	ft_set_pixel(t_fractol *f, int x, int y, int color);
 //color.c
-void	ft_choose_color(t_fractol *f, int x, int y, int iter);
+void	ft_choose_color(t_fractol *f, int x, int y, double iter);
 #endif
