@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:42:16 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/02/26 20:45:32 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/02/26 22:17:53 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	ft_initialize_image(&f);
 	ft_select_fractol(&f);
 	mlx_hook(f.mlx_win, 4, 0, ft_mouse_press, &f);
+	mlx_hook(f.mlx_win, 6, 0, ft_mouse_move, &f);
 	mlx_loop(f.mlx_ptr);
 	return (0);
 }

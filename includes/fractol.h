@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/02/26 21:00:02 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/02/26 23:55:54 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include <fcntl.h>
 # include "libft.h"
 # include <stdio.h>
-# define W_WIDTH 1400
-# define W_HEIGHT 1100
-# define MAX_ITERATIONS 30
+# define W_WIDTH 1000
+# define W_HEIGHT 800
+# define MAX_ITERATIONS 1000
 
 typedef struct s_mondel
 {
@@ -56,8 +56,8 @@ typedef struct s_fractol
 	int		size_line;
 	int		endian;
 	char	fractal;
-	int x0;
-	int y0;
+	double x0;
+	double y0;
 	double scale;
 }		t_fractol;
 
@@ -77,4 +77,5 @@ void	ft_clear_image(t_fractol *f);
 void	ft_choose_color(t_fractol *f, int x, int y, double iter);
 //hooks.c
 int	ft_mouse_press(int button, int x, int y, t_fractol *f);
+int				ft_mouse_move(int x, int y, t_fractol *f);
 #endif

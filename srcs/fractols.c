@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 22:29:34 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/02/26 22:01:11 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/02/27 00:02:14 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,16 @@ static	float ft_lerp(float v0, float v1, float t)
 	return (1 - t) * v0 + t + v1;
 }
 
+static	int	ft_color(int red, int green, int blue)
+{
+	int color;
+
+	color = color >> 16 | red;
+	color = color << 8 | green;
+	color = color << 8 | blue;
+	return (color);
+}
+
 void	ft_mandelbrot_fractol(t_fractol *f)
 {
 	t_mondel m;
@@ -55,7 +65,6 @@ void	ft_mandelbrot_fractol(t_fractol *f)
 			m.c_re = m.min_re + ((m.x - f->x0) * f->scale + f->x0) * m.re_factor;
 			m.z_re = m.c_re;
 			m.z_im = m.c_im;
-			m.is_inside = 1;
 			m.iterations = -1;
 			while (++m.iterations < MAX_ITERATIONS)
 			{
@@ -66,6 +75,9 @@ void	ft_mandelbrot_fractol(t_fractol *f)
 				m.z_im = 2 * m.z_re * m.z_im + m.c_im;
 				m.z_re = m.z_re2 - m.z_im2 + m.c_re;
 			}
+       		double z = sqrt(m.z_re2 + m.z_im2);
+       		int brightness = 256. * log2(1.75 + m.iterations - log2(log2(z))) / log2((double)MAX_ITERATIONS);
+        //	ft_color(brightness, brightness, 255);
 			/*if (m.iterations < MAX_ITERATIONS)
 			{
 				m.log_zn = log(m.z_re2 + m.z_im2) / 2;
@@ -74,10 +86,11 @@ void	ft_mandelbrot_fractol(t_fractol *f)
 			}
 			float color1 = ft_pallete(ft_floor(m.iterations));
 			float color2 = ft_pallete(ft_floor(m.iterations) + 1);
-			float color = ft_lerp(color1, color2, m.iterations - ((int)m.iterations));
-			ft_set_pixel(f, m.x, m.y, color);*/
+			float color = ft_lerp(color1, color2, m.iterations - ((int)m.iterations));*/
 			if (m.iterations != MAX_ITERATIONS)
-				ft_choose_color(f, m.x, m.y, (double)m.iterations);
+				ft_set_pixel(f, m.x, m.y, ft_color(0, brightness, brightness));
+			//if (m.iterations != MAX_ITERATIONS)
+			//	ft_choose_color(f, m.x, m.y, (double)m.iterations);
 		}
 	}
 }
