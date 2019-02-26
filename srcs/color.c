@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 23:56:32 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/02/26 18:45:18 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/02/26 20:30:49 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int		ft_get_color(double percentage, int start, int end)
 	int		green;
 	int		blue;
 
-	//percentage = percentage * (MAX_ITERATIONS / 50);
+	percentage = percentage * (MAX_ITERATIONS / 20);
 	red = ft_get_light((start >> 16) & 0xFF, (end >> 16) & 0xFF,
 			percentage);
 	green = ft_get_light((start >> 8) & 0xFF, (end >> 8) & 0xFF,

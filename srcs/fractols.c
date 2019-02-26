@@ -6,13 +6,13 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 22:29:34 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/02/26 18:43:48 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/02/26 22:01:11 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static	void	ft_init_mondelbrot(t_mondel *m)
+static	void	ft_init_mondelbrot(t_mondel *m, t_fractol *f)
 {
 	m->min_re = -2.0;
 	m->max_re = 1.0;
@@ -26,22 +26,13 @@ static	void	ft_init_mondelbrot(t_mondel *m)
 }
 static int ft_floor(int iter)
 {
-	if (iter <= MAX_ITERATIONS / 3)
-		return (1);
-	else if (iter <= MAX_ITERATIONS * 2 / 3)
-		return (2);
-	else
-		return (3);
+	return (iter / (MAX_ITERATIONS / 10));
 }
 
 static float	ft_pallete(int floor)
 {
-	if (floor == 1)
-		return (0x000000);
-	else if (floor == 2)
-		return (0xFF0000);
-	else
-		return (0xFFFFFF);
+	int pallete[10] = {0x00FF00, 0x00000F, 0x0000FF, 0x0000F00, 0x000FFF, 0x00F000, 0x00FF00, 0x00FFF0, 0x0FFFF0, 0xFFFFFF};
+		return (pallete[floor]);
 }
 
 static	float ft_lerp(float v0, float v1, float t)
@@ -53,15 +44,15 @@ void	ft_mandelbrot_fractol(t_fractol *f)
 {
 	t_mondel m;
 
-	ft_init_mondelbrot(&m);
+	ft_init_mondelbrot(&m, f);
 
 	while (++m.y < W_HEIGHT)
 	{
-		m.c_im = m.max_im - m.y * m.im_factor;
+		m.c_im = m.max_im - ((m.y - f->y0) * f->scale + f->y0) * m.im_factor;
 		m.x = -1;
 		while (++m.x < W_WIDTH)
 		{
-			m.c_re = m.min_re + m.x * m.re_factor;
+			m.c_re = m.min_re + ((m.x - f->x0) * f->scale + f->x0) * m.re_factor;
 			m.z_re = m.c_re;
 			m.z_im = m.c_im;
 			m.is_inside = 1;
@@ -75,7 +66,7 @@ void	ft_mandelbrot_fractol(t_fractol *f)
 				m.z_im = 2 * m.z_re * m.z_im + m.c_im;
 				m.z_re = m.z_re2 - m.z_im2 + m.c_re;
 			}
-/*			if (m.iterations < MAX_ITERATIONS)
+			/*if (m.iterations < MAX_ITERATIONS)
 			{
 				m.log_zn = log(m.z_re2 + m.z_im2) / 2;
 				m.nu = log (m.log_zn / log(2)) / log(2);
@@ -83,7 +74,7 @@ void	ft_mandelbrot_fractol(t_fractol *f)
 			}
 			float color1 = ft_pallete(ft_floor(m.iterations));
 			float color2 = ft_pallete(ft_floor(m.iterations) + 1);
-			float color = ft_lerp(color1, color2, m.iterations % 1.0f);
+			float color = ft_lerp(color1, color2, m.iterations - ((int)m.iterations));
 			ft_set_pixel(f, m.x, m.y, color);*/
 			if (m.iterations != MAX_ITERATIONS)
 				ft_choose_color(f, m.x, m.y, (double)m.iterations);

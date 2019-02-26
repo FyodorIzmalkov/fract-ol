@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/25 21:42:16 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/02/26 20:45:32 by lsandor-         ###   ########.fr       */
+/*   Created: 2019/02/26 20:33:57 by lsandor-          #+#    #+#             */
+/*   Updated: 2019/02/26 21:00:26 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	main(int argc, char **argv)
+int	ft_mouse_press(int button, int x, int y, t_fractol *f)
 {
-	t_fractol	f;
-
-	if (argc != 2)
-		return (ft_exit_error(1));
-	ft_check_fractol(&f, argv[1]);
-	f.mlx_ptr = mlx_init();
-	f.mlx_win = mlx_new_window(f.mlx_ptr, W_WIDTH, W_HEIGHT, argv[1]);
-	ft_initialize_image(&f);
-	ft_select_fractol(&f);
-	mlx_hook(f.mlx_win, 4, 0, ft_mouse_press, &f);
-	mlx_loop(f.mlx_ptr);
+	ft_clear_image(f);
+	button == 5 ? f->scale *= 0.9 : 0;
+	button == 4 ? f->scale *= 1.1 : 0;
+	printf("f->scale=%f\n",f->scale);
+	ft_select_fractol(f);
 	return (0);
 }
