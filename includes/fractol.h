@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/02/28 21:37:26 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/02/28 23:51:40 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 # include <pthread.h>
 # define W_WIDTH 1000
 # define W_HEIGHT 800
-# define MAX_ITERATIONS 200
+# define MAX_ITERATIONS 30
+# define NTHREADS 20
 
 typedef struct s_mondel
 {
@@ -46,6 +47,14 @@ typedef struct s_mondel
 	float log_zn;
 	float nu;
 }				t_mondel;
+
+typedef struct s_thread
+{
+	t_mondel m;
+	int st;
+	int end;
+}				t_thread;
+
 
 typedef struct s_fractol
 {
@@ -72,6 +81,7 @@ void	ft_check_fractol(t_fractol *f, char *str);
 void	ft_select_fractol(t_fractol *f);
 // fractols.c
 void	ft_mandelbrot_fractol(t_fractol *f);
+void	*ft_calculate(void *m);
 // image.c
 void	ft_initialize_image(t_fractol *f);
 void	ft_set_pixel(t_fractol *f, int x, int y, int color);
