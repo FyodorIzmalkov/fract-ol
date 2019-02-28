@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/02/28 23:51:40 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/01 00:17:36 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define W_WIDTH 1000
 # define W_HEIGHT 800
 # define MAX_ITERATIONS 30
-# define NTHREADS 20
+# define NTHREADS 10
 
 typedef struct s_mondel
 {
@@ -46,15 +46,12 @@ typedef struct s_mondel
 	double iterations;
 	float log_zn;
 	float nu;
+	double x0;
+	double y0;
+	double offsetx;
+	double offsety;
+	double scale;
 }				t_mondel;
-
-typedef struct s_thread
-{
-	t_mondel m;
-	int st;
-	int end;
-}				t_thread;
-
 
 typedef struct s_fractol
 {
@@ -73,6 +70,13 @@ typedef struct s_fractol
 	double scale;
 }		t_fractol;
 
+typedef struct s_thread
+{
+	t_mondel mon;
+	int st;
+	int end;
+	char *add_ptr;
+}				t_thread;
 // utilities.c
 int	ft_exit_error(int error);
 void	ft_exit_incorrect_name(void);
@@ -84,7 +88,7 @@ void	ft_mandelbrot_fractol(t_fractol *f);
 void	*ft_calculate(void *m);
 // image.c
 void	ft_initialize_image(t_fractol *f);
-void	ft_set_pixel(t_fractol *f, int x, int y, int color);
+void	ft_set_pixel(char *add_ptr, int x, int y, int color);
 void	ft_clear_image(t_fractol *f);
 //color.c
 void	ft_choose_color(t_fractol *f, int x, int y, double iter);
