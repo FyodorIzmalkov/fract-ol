@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 22:29:34 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/02/27 00:02:14 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/02/27 17:08:32 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,13 @@ void	ft_mandelbrot_fractol(t_fractol *f)
 
 	while (++m.y < W_HEIGHT)
 	{
-		m.c_im = m.max_im - ((m.y - f->y0) * f->scale + f->y0) * m.im_factor;
+		m.c_im = m.max_im - ((m.y - f->y0) / f->scale + f->y0) * m.im_factor;
+	write(1, 0, 2);
+	//	printf("offset x: %f, offsety: %f\n",f->offsetx, f->offsety);
 		m.x = -1;
 		while (++m.x < W_WIDTH)
 		{
-			m.c_re = m.min_re + ((m.x - f->x0) * f->scale + f->x0) * m.re_factor;
+			m.c_re = m.min_re + ((m.x - f->x0) / f->scale + f->x0) * m.re_factor;
 			m.z_re = m.c_re;
 			m.z_im = m.c_im;
 			m.iterations = -1;
@@ -77,7 +79,7 @@ void	ft_mandelbrot_fractol(t_fractol *f)
 			}
        		double z = sqrt(m.z_re2 + m.z_im2);
        		int brightness = 256. * log2(1.75 + m.iterations - log2(log2(z))) / log2((double)MAX_ITERATIONS);
-        //	ft_color(brightness, brightness, 255);
+        	ft_color(brightness, brightness, 255);
 			/*if (m.iterations < MAX_ITERATIONS)
 			{
 				m.log_zn = log(m.z_re2 + m.z_im2) / 2;
@@ -89,8 +91,8 @@ void	ft_mandelbrot_fractol(t_fractol *f)
 			float color = ft_lerp(color1, color2, m.iterations - ((int)m.iterations));*/
 			if (m.iterations != MAX_ITERATIONS)
 				ft_set_pixel(f, m.x, m.y, ft_color(0, brightness, brightness));
-			//if (m.iterations != MAX_ITERATIONS)
-			//	ft_choose_color(f, m.x, m.y, (double)m.iterations);
+		//	if (m.iterations != MAX_ITERATIONS)
+		//		ft_choose_color(f, m.x, m.y, (double)m.iterations);
 		}
 	}
 }

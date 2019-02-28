@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/02/26 23:55:54 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/02/27 16:52:24 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <stdio.h>
 # define W_WIDTH 1000
 # define W_HEIGHT 800
-# define MAX_ITERATIONS 1000
+# define MAX_ITERATIONS 30
 
 typedef struct s_mondel
 {
@@ -58,6 +58,8 @@ typedef struct s_fractol
 	char	fractal;
 	double x0;
 	double y0;
+	double offsetx;
+	double offsety;
 	double scale;
 }		t_fractol;
 
