@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/02/28 19:49:20 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/02/28 21:37:26 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include "libft.h"
 # include <stdio.h>
+# include <pthread.h>
 # define W_WIDTH 1000
 # define W_HEIGHT 800
 # define MAX_ITERATIONS 200
