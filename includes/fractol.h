@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/02/27 16:52:24 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/02/28 19:49:20 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <stdio.h>
 # define W_WIDTH 1000
 # define W_HEIGHT 800
-# define MAX_ITERATIONS 30
+# define MAX_ITERATIONS 200
 
 typedef struct s_mondel
 {

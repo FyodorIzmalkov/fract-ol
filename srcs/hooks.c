@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 20:33:57 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/02/28 18:47:35 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/02/28 19:55:56 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ int	ft_mouse_press(int button, int x, int y, t_fractol *f)
 		if (button == 5)
 		{
 			f->scale *= 1.1;
-			f->x0 += 10;
-		//	f->offsetx = x / f->scale;
-		//	f->offsety = y/ f->scale;
+			f->offsetx += (f->x0 - (double)x) / (f->scale * 3);
+			f->offsety -= (f->y0 - (double)y) / (f->scale * 3);
 		}
 		button == 4 ? f->scale *= 0.9 : 0;
 		printf("f->scale=%f\n",f->scale);

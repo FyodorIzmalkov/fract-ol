@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 22:29:34 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/02/27 17:08:32 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/02/28 19:47:10 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ void	ft_mandelbrot_fractol(t_fractol *f)
 
 	while (++m.y < W_HEIGHT)
 	{
-		m.c_im = m.max_im - ((m.y - f->y0) / f->scale + f->y0) * m.im_factor;
+		m.c_im = m.max_im - ((m.y - f->y0) / f->scale + f->y0) * m.im_factor - f->offsety/W_WIDTH;
 	write(1, 0, 2);
 	//	printf("offset x: %f, offsety: %f\n",f->offsetx, f->offsety);
 		m.x = -1;
 		while (++m.x < W_WIDTH)
 		{
-			m.c_re = m.min_re + ((m.x - f->x0) / f->scale + f->x0) * m.re_factor;
+			m.c_re = m.min_re + ((m.x - f->x0) / f->scale + f->x0) * m.re_factor - f->offsetx/W_HEIGHT;
 			m.z_re = m.c_re;
 			m.z_im = m.c_im;
 			m.iterations = -1;
