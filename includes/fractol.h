@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/01 20:12:58 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/01 23:48:56 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,27 @@
 # define W_HEIGHT 800
 # define MAX_ITERATIONS 100
 # define NTHREADS W_HEIGHT * 2
+
+typedef struct s_j
+{
+	double x;
+	double y;
+}				t_j;
+typedef struct s_jul
+{
+	int x;
+	int y;
+	t_j z0;
+	t_j z1;
+	t_j c;
+	int i;
+	char *add_ptr;
+	double x0;
+	double y0;
+	double scale;
+	double offsetx;
+	double offsety;
+}				t_jul;
 
 typedef struct s_mondel
 {
@@ -68,6 +89,8 @@ typedef struct s_fractol
 	double offsetx;
 	double offsety;
 	double scale;
+	double curr_x;
+	double curr_y;
 }		t_fractol;
 
 typedef struct s_thread
@@ -85,7 +108,7 @@ void	ft_exit_incorrect_name(void);
 void	ft_check_fractol(t_fractol *f, char *str);
 // initialize.c
 void	ft_select_fractol(t_fractol *f);
-// fractols.c
+// mandelbrot.c
 void	ft_mandelbrot_fractol(t_fractol *f);
 void	*ft_calculate(void *m);
 // image.c
@@ -97,4 +120,9 @@ void	ft_choose_color(char *add_ptr, int x, int y, double iter);
 //hooks.c
 int	ft_mouse_press(int button, int x, int y, t_fractol *f);
 int				ft_mouse_move(int x, int y, t_fractol *f);
+//julia.c
+void	ft_julia_fractol(t_fractol *f);
+void	*ft_julia(void *a);
+void	ft_julia1(void *a);
+void	ft_julia2(void *a);
 #endif
