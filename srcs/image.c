@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 23:16:33 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/01 19:49:37 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/01 19:58:47 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ void	ft_set_pixel(char *add_ptr, int x, int y, int color)
 
 void	ft_clear_image(t_fractol *f)
 {
-	ft_bzero(f->add_ptr, W_WIDTH * W_HEIGHT * f->bpp);
+	ft_bzero(f->add_ptr, W_WIDTH * W_HEIGHT * 4);
 }

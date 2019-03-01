@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/01 19:49:50 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/01 20:12:58 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 # include "libft.h"
 # include <stdio.h>
 # include <pthread.h>
-# define W_WIDTH 900
-# define W_HEIGHT 900
-# define MAX_ITERATIONS 30
+# define W_WIDTH 1000
+# define W_HEIGHT 800
+# define MAX_ITERATIONS 100
 # define NTHREADS W_HEIGHT * 2
 
 typedef struct s_mondel

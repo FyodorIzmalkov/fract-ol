@@ -6,7 +6,7 @@
 #    By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/06 12:40:45 by lsandor-          #+#    #+#              #
-#    Updated: 2019/02/28 22:36:37 by lsandor-         ###   ########.fr        #
+#    Updated: 2019/03/01 20:26:25 by lsandor-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SOURCES_DIRECTORY = ./srcs/
 SOURCES_LIST = main.c\
 			   utilities.c\
 			   initialize.c\
-			   fractols.c\
+			   mandelbrot.c\
 			   image.c\
 			   color.c\
 			   hooks.c\

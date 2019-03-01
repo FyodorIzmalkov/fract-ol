@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractols.c                                         :+:      :+:    :+:   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 22:29:34 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/01 19:49:16 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/01 20:26:09 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void	ft_mandelbrot_fractol(t_fractol *f)
 	ft_init_mondelbrot(&m, f);
 	while (++i < NTHREADS)
 	{
-	//	printf("i: %d\n", i);
 		if (i)
 			i % 2 == 0 ? y++ : 0;
 		thread_args[i].st = y;
@@ -98,7 +97,6 @@ void	ft_mandelbrot_fractol(t_fractol *f)
 			thread_args[i].endx = W_WIDTH;
 		}
 		thread_args[i].end = y;
-	//	printf("for thread N %d, sty = %d, endy = %d stx = %d endx = %d\n",i,thread_args[i].st,thread_args[i].end, thread_args[i].stx, thread_args[i].endx);
 		thread_args[i].mon = m;
 		thread_args[i].add_ptr = f->add_ptr;
 		pthread_create(&threads[i], NULL, ft_calculate, (void*)&thread_args[i]);
@@ -121,11 +119,12 @@ void	*ft_calculate(void *a)
 	m = (t_thread*)a;
 	while (m->st <= m->end)
 	{
-	//	printf(" %d \n", m->st);
-		m->mon.c_im = m->mon.max_im - ((m->st - m->mon.y0) / m->mon.scale + m->mon.y0) * m->mon.im_factor - m->mon.offsety/W_WIDTH;
+		m->mon.c_im = m->mon.max_im - ((m->st - m->mon.y0) / m->mon.scale 
+				+ m->mon.y0) * m->mon.im_factor - m->mon.offsety/W_WIDTH;
 		while (m->stx < m->endx)
 		{
-			m->mon.c_re = m->mon.min_re + ((m->stx - m->mon.x0) / m->mon.scale + m->mon.x0) * m->mon.re_factor - m->mon.offsetx/W_HEIGHT;
+			m->mon.c_re = m->mon.min_re + ((m->stx - m->mon.x0) / m->mon.scale 
+					+ m->mon.x0) * m->mon.re_factor - m->mon.offsetx/W_HEIGHT;
 			m->mon.z_re = m->mon.c_re;
 			m->mon.z_im = m->mon.c_im;
 			m->mon.iterations = -1;	
@@ -140,20 +139,8 @@ void	*ft_calculate(void *a)
 			}
        		double z = sqrt(m->mon.z_re2 + m->mon.z_im2);
        		int brightness = 256. * log2(1.75 + m->mon.iterations - log2(log2(z))) / log2((double)MAX_ITERATIONS);
-        	ft_color(brightness, brightness, 255);
-			/*if (m.iterations < MAX_ITERATIONS)
-			{
-				m.log_zn = log(m.z_re2 + m.z_im2) / 2;
-				m.nu = log (m.log_zn / log(2)) / log(2);
-				m.iterations = m.iterations - m.nu;
-			}
-			float color1 = ft_pallete(ft_floor(m.iterations));
-			float color2 = ft_pallete(ft_floor(m.iterations) + 1);
-			float color = ft_lerp(color1, color2, m.iterations - ((int)m.iterations));*/
 			if (m->mon.iterations != MAX_ITERATIONS)
 				ft_set_pixel(m->add_ptr, m->stx, m->st, ft_color(0, brightness, brightness));
-		//	if (m->mon.iterations != MAX_ITERATIONS)
-		//		ft_choose_color(m->add_ptr, m->stx, m->st, (double)m->mon.iterations);
 		m->stx++;
 		}
 	m->st++;
