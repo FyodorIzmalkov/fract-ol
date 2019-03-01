@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 23:56:32 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/01 16:55:30 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/01 19:04:30 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int		ft_get_color(double percentage, int start, int end)
 	return ((red << 16) | (green << 8) | blue);
 }
 
-/*void	ft_choose_color(t_fractol *f, int x, int y, double iter)
+void	ft_choose_color(char *add_ptr, int x, int y, double iter)
 {
 	double percent;
 	int color_start;
@@ -46,7 +46,7 @@ static int		ft_get_color(double percentage, int start, int end)
 		color_start = 0x000000;
 		color_end = 0xFF0000;
 		//color = (int)(color_end * percent);
-		ft_set_pixel(f, x, y, ft_get_color(percent, color_start, color_end));
+		ft_set_pixel(add_ptr, x, y, ft_get_color(percent, color_start, color_end));
 	}
 	else
 	{
@@ -54,6 +54,6 @@ static int		ft_get_color(double percentage, int start, int end)
 		color_start = 0xFF0000;
 		color_end = 0xFFFFFF;
 		color = (int)(color_end * percent);
-		ft_set_pixel(f, x, y, ft_get_color(percent, color_start, color_end));
+		ft_set_pixel(add_ptr, x, y, ft_get_color(percent, color_start, color_end));
 	}
-}*/
+}
