@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 22:29:34 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/01 00:17:19 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/01 17:45:51 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,11 @@ void	ft_mandelbrot_fractol(t_fractol *f)
 	ft_init_mondelbrot(&m, f);
 	while (++i < NTHREADS)
 	{
-		printf("tmp: %d\n", tmp);
+		//printf("tmp: %d\n", tmp);
 		thread_args[i].st = tmp;
 		tmp += row;
 		thread_args[i].end = tmp;
+		printf("for thread N %d, st = %d, end = %d\n",i,thread_args[i].st,thread_args[i].end);
 		thread_args[i].mon = m;
 		thread_args[i].add_ptr = f->add_ptr;
 		pthread_create(&threads[i], NULL, ft_calculate, (void*)&thread_args[i]);

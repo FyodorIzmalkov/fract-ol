@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 23:56:32 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/02/26 20:30:49 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/01 16:55:30 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int		ft_get_color(double percentage, int start, int end)
 	return ((red << 16) | (green << 8) | blue);
 }
 
-void	ft_choose_color(t_fractol *f, int x, int y, double iter)
+/*void	ft_choose_color(t_fractol *f, int x, int y, double iter)
 {
 	double percent;
 	int color_start;
@@ -56,4 +56,4 @@ void	ft_choose_color(t_fractol *f, int x, int y, double iter)
 		color = (int)(color_end * percent);
 		ft_set_pixel(f, x, y, ft_get_color(percent, color_start, color_end));
 	}
-}
+}*/
