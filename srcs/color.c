@@ -6,11 +6,21 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 23:56:32 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/01 19:04:30 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 15:19:38 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int	ft_color(unsigned char red, unsigned char green, unsigned char blue)
+{
+	int color;
+
+	color = color >> 16 | red;
+	color = color << 8 | green;
+	color = color << 8 | blue;
+	return (color);
+}
 
 static int		ft_get_light(int start, int end, double percentage)
 {

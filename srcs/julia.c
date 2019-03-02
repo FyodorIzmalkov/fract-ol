@@ -6,25 +6,25 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 20:38:05 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 00:17:56 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 15:21:55 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static t_j	ft_add(t_j a, t_j b)
+static t_j	ft_add(t_j a, t_j *b)
 {
 	t_j c;
-	c.x = a.x + b.x;
-	c.y = a.y + b.y;
+	c.x = a.x + b->x;
+	c.y = a.y + b->y;
 	return (c);
 }
 
-static t_j ft_sqr(t_j a)
+static t_j ft_sqr(t_j *a)
 {
 	t_j c;
-	c.x = a.x * a.x - a.y * a.y;
-	c.y = 2 * a.x * a.y;
+	c.x = a->x * a->x - a->y * a->y;
+	c.y = 2 * a->x * a->y;
 	return (c);
 }
 
@@ -33,14 +33,6 @@ static double ft_mod(t_j a)
 	return (sqrt(a.x *a.x + a.y * a.y));
 }
 
-static	t_j ft_map_point(int x, int y, t_jul *f)
-{
-	t_j c;
-
-	c.x = 1.5 * (x - f->x0 ) / (0.5 * f->scale * W_WIDTH) - f->offsetx/W_HEIGHT;
-	c.y = (y - f->y0) / (0.5 * f->scale * W_HEIGHT) + f->offsety/W_WIDTH;
-	return (c);
-}
 static void	ft_julia_init(t_jul *j, int i, t_fractol *f)
 {
 	j->x = 0;
@@ -54,6 +46,8 @@ static void	ft_julia_init(t_jul *j, int i, t_fractol *f)
 	j->scale = f->scale;
 	j->offsetx = f->offsetx;
 	j->offsety = f->offsety;
+	j->z = 0;
+	j->clr = 0;
 }
 
 void	ft_julia_fractol(t_fractol *f)
@@ -81,20 +75,20 @@ void	*ft_julia(void *a)
 	j = (t_jul*)a;
 	while (j->x++ < W_WIDTH)
 	{
-		j->z0 = ft_map_point(j->x, j->y, j);
+		j->z0.x = 1.5 * (j->x - j->x0 ) / (0.5 * j->scale * W_WIDTH) - j->offsetx/W_HEIGHT;
+		j->z0.y = (j->y - j->y0) / (0.5 * j->scale * W_HEIGHT) + j->offsety/W_WIDTH;
 		j->i = 0;
 		while (j->i++ <= MAX_ITERATIONS)
 		{
-			j->z1 = ft_add(ft_sqr(j->z0),j->c);
-			if (ft_mod(j->z1) > 4)
+			j->z1 = ft_add(ft_sqr(&j->z0),&j->c);
+			if ((j->z = ft_mod(j->z1)) > 4)
 			{
-				ft_set_pixel(j->add_ptr,j->x,j->y, 0x00FFFFFF);
+				j->clr = 255. * log2(1.75 + j->i - log2(log2(j->z))) / log2((double)MAX_ITERATIONS);
+				ft_set_pixel(j->add_ptr,j->x,j->y, ft_color(0, j->clr,j->clr));
 				break;
 			}
 			j->z0 = j->z1;
 		}
-		if (j->i > MAX_ITERATIONS)
-			ft_set_pixel(j->add_ptr,j->x,j->y,0);
 	}
 	return (NULL);
 }

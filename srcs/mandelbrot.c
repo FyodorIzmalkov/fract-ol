@@ -6,11 +6,20 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 22:29:34 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 00:18:00 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 15:33:31 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+static int	ft_color1(unsigned char red, unsigned char green, unsigned char blue)
+{
+	int color;
+
+	color = color >> 16 | red;
+	color = color << 8 | green;
+	color = color << 8 | blue;
+	return (color);
+}
 
 static	void	ft_init_mondelbrot(t_mondel *m, t_fractol *f)
 {
@@ -29,46 +38,6 @@ static	void	ft_init_mondelbrot(t_mondel *m, t_fractol *f)
 	m->offsety = f->offsety;
 	m->scale = f->scale;
 }
-static int ft_floor(int iter)
-{
-	return (iter / (MAX_ITERATIONS / 10));
-}
-
-static float	ft_pallete(int floor)
-{
-	int pallete[10] = {0x00FF00, 0x00000F, 0x0000FF, 0x0000F00, 0x000FFF, 0x00F000, 0x00FF00, 0x00FFF0, 0x0FFFF0, 0xFFFFFF};
-		return (pallete[floor]);
-}
-
-static	float ft_lerp(float v0, float v1, float t)
-{
-	return (1 - t) * v0 + t + v1;
-}
-
-static	int	ft_color(int red, int green, int blue)
-{
-	int color;
-
-	color = color >> 16 | red;
-	color = color << 8 | green;
-	color = color << 8 | blue;
-	return (color);
-}
-/*void	*ft_calculate(void *a)
-{
-	t_mondel* m = (t_mondel *)a;
-	m->iterations = -1;
-	while (++m->iterations < MAX_ITERATIONS)
-	{
-		m->z_re2 = m->z_re * m->z_re;
-		m->z_im2 = m->z_im * m->z_im;
-		if (m->z_re2 + m->z_im2 > 4)
-			break ;
-		m->z_im = 2 * m->z_re * m->z_im + m->c_im;
-		m->z_re = m->z_re2 - m->z_im2 + m->c_re;
-	}
-	return (NULL);
-}*/
 
 void	ft_mandelbrot_fractol(t_fractol *f)
 {
@@ -138,7 +107,7 @@ void	*ft_calculate(void *a)
 				m->mon.z_re = m->mon.z_re2 - m->mon.z_im2 + m->mon.c_re;
 			}
        		double z = sqrt(m->mon.z_re2 + m->mon.z_im2);
-       		int brightness = 256. * log2(1.75 + m->mon.iterations - log2(log2(z))) / log2((double)MAX_ITERATIONS);
+       		unsigned char brightness = 255. * log2(1.75 + m->mon.iterations - log2(log2(z))) / log2((double)MAX_ITERATIONS);
 			if (m->mon.iterations != MAX_ITERATIONS)
 				ft_set_pixel(m->add_ptr, m->stx, m->st, ft_color(0, brightness, brightness));
 		m->stx++;

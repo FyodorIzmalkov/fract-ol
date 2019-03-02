@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 00:17:58 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 15:32:08 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <pthread.h>
 # define W_WIDTH 1000
 # define W_HEIGHT 800
-# define MAX_ITERATIONS 30
+# define MAX_ITERATIONS 50
 # define NTHREADS W_HEIGHT * 2
 
 typedef struct s_j
@@ -45,6 +45,8 @@ typedef struct s_jul
 	double scale;
 	double offsetx;
 	double offsety;
+	double z;
+	unsigned char clr;
 }				t_jul;
 
 typedef struct s_mondel
@@ -118,6 +120,7 @@ void	ft_set_pixel(char *add_ptr, int x, int y, int color);
 void	ft_clear_image(t_fractol *f);
 //color.c
 void	ft_choose_color(char *add_ptr, int x, int y, double iter);
+int		ft_color(unsigned char red, unsigned char green, unsigned char blue);
 //hooks.c
 int	ft_mouse_press(int button, int x, int y, t_fractol *f);
 int				ft_mouse_move(int x, int y, t_fractol *f);
