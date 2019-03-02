@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 20:38:05 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 19:09:54 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 20:03:01 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	ft_julia_init(t_jul *j, int i, t_fractol *f)
 	j->clr = 0;
 }
 
-void	ft_julia_fractol(t_fractol *f)
+/*void	ft_julia_fractol(t_fractol *f)
 {
 	t_jul t_arg;
 
@@ -66,29 +66,29 @@ void	ft_julia_fractol(t_fractol *f)
 	i = -1;
 	while (++i < W_HEIGHT)
 		pthread_join(threads[i], NULL);
-}
+}*/
 
-void	*ft_julia(void *a)
+void	ft_julia(t_args *a, char *add_ptr)
 {
-	t_jul *j;
+	t_helper h;
 
-	j = (t_jul*)a;
-	while (j->x++ < W_WIDTH)
+	while (++a->x < W_WIDTH)
 	{
-		j->z0.x = 1.5 * (j->x - j->x0 ) / (0.5 * j->scale * W_WIDTH) - j->offsetx/W_HEIGHT;
-		j->z0.y = (j->y - j->y0) / (0.5 * j->scale * W_HEIGHT) + j->offsety/W_WIDTH;
-		j->i = 0;
-		while (j->i++ <= MAX_ITERATIONS)
+		a->z.x = (a->x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+		h.z.x = a->z.x;
+		h.z.y = a->z.y;
+		h.i = -1;
+		while ((++h.i <= MAX_ITERATIONS) && (h.z.x * h.z.x + h.z.y * h.z.y) < 20)
 		{
-			j->z1 = ft_add(ft_sqr(&j->z0),&j->c);
-			if ((j->z = ft_mod(j->z1)) > 4)
-			{
-				j->clr = 255. * log2(2 + j->i - log2(log2(j->z))) / log2((double)MAX_ITERATIONS);
-				ft_set_pixel(j->add_ptr,j->x,j->y, ft_color(0, j->clr,j->clr));
-				break;
-			}
-			j->z0 = j->z1;
+			h.xtemp = h.z.x * h.z.x - h.z.y * h.z.y;
+			h.z.y = 2 * h.z.x * h.z.y + a->m->cury;
+			h.z.x = h.xtemp + a->m->curx;
+		}
+		if (h.i != MAX_ITERATIONS)
+		{
+			h.sqr_sum = sqrt(h.z.x * h.z.x + h.z.y * h.z.y);
+			h.color = 255. * log2(2 + h.i - log2(log2(h.sqr_sum))) / log2((double)MAX_ITERATIONS);
+			ft_set_pixel(add_ptr, a->x, a->y, ft_color(0, h.color,h.color));
 		}
 	}
-	return (NULL);
 }

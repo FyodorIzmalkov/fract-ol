@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 19:27:22 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 20:03:06 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct s_f
 	char fract;
 	double x0;
 	double y0;
+	double	curx;
+	double cury;
 }				t_f;
 
 typedef struct s_args
@@ -144,7 +146,6 @@ void	ft_check_fractol(t_fractol *f, char *str);
 // initialize.c
 void	ft_select_fractol(t_fractol *f);
 // mandelbrot.c
-void	ft_mandelbrot_fractol(t_fractol *f);
 void	ft_mandelbrot(t_args *a, char *add_ptr);
 // image.c
 void	ft_initialize_image(t_fractol *f);
@@ -160,9 +161,7 @@ int	ft_key_press(int keycode, t_fractol *f);
 int	ft_key_release(int keycode, t_fractol *f);
 //julia.c
 void	ft_julia_fractol(t_fractol *f);
-void	*ft_julia(void *a);
-void	ft_julia1(void *a);
-void	ft_julia2(void *a);
+void	ft_julia(t_args *a, char *add_ptr);
 //carpet
 void	ft_multi_thread_fractals(t_fractol *f);
 void	*ft_print_fractal(void *thread_args);
