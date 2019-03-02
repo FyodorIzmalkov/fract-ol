@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:52 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 22:31:40 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 22:59:44 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ void	ft_check_fractol(t_fractol *f, char *str)
 		f->fractal = 4;
 	else if (!ft_strcmp(str, "-R2"))
 		f->fractal = 5;
+	else if (!ft_strcmp(str, "-R3"))
+		f->fractal = 6;
+	else if (!ft_strcmp(str, "-R4"))
+		f->fractal = 7;
+	else if (!ft_strcmp(str, "-R5"))
+		f->fractal = 8;
 	else if (f->fractal == -1)
 		ft_exit_incorrect_name();
 }

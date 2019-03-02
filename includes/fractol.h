@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 22:30:50 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 23:58:44 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,8 +166,11 @@ void	ft_julia(t_args *a, char *add_ptr);
 void	ft_multi_thread_fractals(t_fractol *f);
 void	*ft_print_fractal(void *thread_args);
 // carpet.c
-void	ft_sierpenski_carpet(t_args *a, char *add_ptr);
+void	ft_carpet(t_args *a, char *add_ptr);
 //random_fractals
 void	ft_random_fractal_one(t_args *a, char *add_ptr);
 void	ft_random_fractal_two(t_args *a, char *add_ptr);
+void	ft_random_fractal_three(t_args *a, char *add_ptr);
+void	ft_random_fractal_four(t_args *a, char *add_ptr);
+void	ft_random_fractal_five(t_args *a, char *add_ptr);
 #endif

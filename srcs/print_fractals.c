@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 16:05:40 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 22:32:00 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 23:59:15 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,14 @@ void	*ft_print_fractal(void	*thread_args)
 	else if (a->m->fract == 3)
 		ft_burning_ship(a, a->add_ptr);
 	else if (a->m->fract == 4)
-		ft_random_fractal_one(a, a->add_ptr);
+		ft_carpet(a, a->add_ptr);
 	else if (a->m->fract == 5)
 		ft_random_fractal_two(a, a->add_ptr);
+	else if (a->m->fract == 6)
+		ft_random_fractal_three(a, a->add_ptr);
+	else if (a->m->fract == 7)
+		ft_random_fractal_four(a, a->add_ptr);
+	else if (a->m->fract == 8)
+		ft_random_fractal_five(a, a->add_ptr);
 	return (NULL);
 }
