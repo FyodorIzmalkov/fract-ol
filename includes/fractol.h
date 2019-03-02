@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 19:12:11 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 19:27:22 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <pthread.h>
 # define W_WIDTH 1000
 # define W_HEIGHT 800
-# define MAX_ITERATIONS 30
+# define MAX_ITERATIONS 100
 # define NTHREADS W_HEIGHT * 2
 
 typedef struct s_point
@@ -37,6 +37,7 @@ typedef struct s_helper
 	t_point z;
 	t_point z_2;
 	double sqr_sum;
+	double xtemp;
 	unsigned char color;
 	int i;
 }				t_helper;

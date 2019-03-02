@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 16:05:40 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 19:11:04 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 19:27:01 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,28 +45,32 @@ void	ft_multi_thread_fractals(t_fractol *f)
 	while (++i < W_HEIGHT)
 		pthread_join(threads[i], NULL);
 }
-static	void	ft_bs(t_point *tmp, char *add_ptr, int x, int y)
+static	void	ft_bs(t_args *a, char *add_ptr)
 {
-	t_point z;
-	int i;
-	unsigned char color;
-	double xtemp;
-	double sqr_sum;
+	t_helper h;
 
-	z.x = tmp->x;
-	z.y = tmp->y;
-	i = -1;
-	while ((z.x * z.x + z.y * z.y < 20) && ++i < MAX_ITERATIONS)
+	while (++a->x < W_WIDTH)
 	{
-		xtemp = z.x * z.x - z.y * z.y + tmp->x;
-		z.y = fabs(2 * z.x * z.y) + tmp->y;
-		z.x = fabs(xtemp);
-	}
-	if (i != MAX_ITERATIONS)
-	{
-		sqr_sum = sqrt(z.x * z.x + z.y * z.y);
-		color = 255. * log2(5 + i - log2(log2(sqr_sum))) / log2((double)MAX_ITERATIONS);
-		ft_set_pixel(add_ptr, x, y, ft_color(0, color, color));
+		a->z.x = (a->x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+		h.z.x = a->z.x;
+		h.z.y = a->z.y;
+		h.z_2.x = h.z.x * h.z.x;
+		h.z_2.y = h.z.y * h.z.y;
+		h.i = -1;
+		while ((++h.i < MAX_ITERATIONS) && (h.z_2.x + h.z_2.y) < 20)
+		{
+			h.xtemp = h.z_2.x - h.z_2.y + a->z.x;
+			h.z.y = fabs(2 * h.z.x * h.z.y) + a->z.y;
+			h.z.x = fabs(h.xtemp);
+			h.z_2.x = h.z.x * h.z.x;
+			h.z_2.y = h.z.y * h.z.y;
+		}
+		if (h.i != MAX_ITERATIONS)
+		{
+			h.sqr_sum = sqrt(h.z_2.x + h.z_2.y);
+			h.color = 255. * log2(5 + h.i - log2(log2(h.sqr_sum))) / log2((double)MAX_ITERATIONS);
+			ft_set_pixel(add_ptr, a->x, a->y, ft_color(0, h.color, h.color));
+		}
 	}
 }
 
@@ -76,13 +80,9 @@ void	*ft_print_fractal(void	*thread_args)
 
 	a = (t_args*)thread_args;
 	a->z.y = (a->y - a->m->y0) * a->m->sc_h + a->m->offy_w;
-//	while (a->x++ < W_WIDTH)
-//	{
-//		a->z.x = (a->x - a->m->x0) * a->m->sc_w - a->m->offx_h;
 	if (a->m->fract == 1)
 		ft_mandelbrot(a, a->add_ptr);
-//	else if (a->m->fract == 3)
-//		ft_bs(a, a->add_ptr, a->x, a->y);
-//	}
+	else if (a->m->fract == 3)
+		ft_bs(a, a->add_ptr);
 	return (NULL);
 }
