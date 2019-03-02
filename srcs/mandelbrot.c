@@ -6,20 +6,11 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 22:29:34 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 15:33:31 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 15:58:14 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-static int	ft_color1(unsigned char red, unsigned char green, unsigned char blue)
-{
-	int color;
-
-	color = color >> 16 | red;
-	color = color << 8 | green;
-	color = color << 8 | blue;
-	return (color);
-}
 
 static	void	ft_init_mondelbrot(t_mondel *m, t_fractol *f)
 {
@@ -101,13 +92,13 @@ void	*ft_calculate(void *a)
 			{
 				m->mon.z_re2 = m->mon.z_re * m->mon.z_re;
 				m->mon.z_im2 = m->mon.z_im * m->mon.z_im;
-				if (m->mon.z_re2 + m->mon.z_im2 > 4)
+				if (m->mon.z_re2 + m->mon.z_im2 > 12)
 					break ;
 				m->mon.z_im = 2 * m->mon.z_re * m->mon.z_im + m->mon.c_im;
 				m->mon.z_re = m->mon.z_re2 - m->mon.z_im2 + m->mon.c_re;
 			}
        		double z = sqrt(m->mon.z_re2 + m->mon.z_im2);
-       		unsigned char brightness = 255. * log2(1.75 + m->mon.iterations - log2(log2(z))) / log2((double)MAX_ITERATIONS);
+       		unsigned char brightness = 255. * log2(2 + m->mon.iterations - log2(log2(z))) / log2((double)MAX_ITERATIONS);
 			if (m->mon.iterations != MAX_ITERATIONS)
 				ft_set_pixel(m->add_ptr, m->stx, m->st, ft_color(0, brightness, brightness));
 		m->stx++;
