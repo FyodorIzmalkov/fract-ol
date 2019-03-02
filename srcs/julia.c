@@ -6,29 +6,29 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 20:38:05 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 16:00:09 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 19:09:54 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static t_j	ft_add(t_j a, t_j *b)
+static t_point ft_add(t_point a, t_point *b)
 {
-	t_j c;
+	t_point c;
 	c.x = a.x + b->x;
 	c.y = a.y + b->y;
 	return (c);
 }
 
-static t_j ft_sqr(t_j *a)
+static t_point ft_sqr(t_point *a)
 {
-	t_j c;
+	t_point c;
 	c.x = a->x * a->x - a->y * a->y;
 	c.y = 2 * a->x * a->y;
 	return (c);
 }
 
-static double ft_mod(t_j a)
+static double ft_mod(t_point a)
 {
 	return (sqrt(a.x *a.x + a.y * a.y));
 }

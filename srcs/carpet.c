@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 16:05:40 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 18:04:56 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 19:11:04 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	ft_init_info(t_f *m, t_fractol *f)
 	m->y0 = f->y0;
 }
 
-void	ft_burning_ship_fractol(t_fractol *f)
+void	ft_multi_thread_fractals(t_fractol *f)
 {
 	t_f m;
 	pthread_t threads[W_HEIGHT];
@@ -45,9 +45,9 @@ void	ft_burning_ship_fractol(t_fractol *f)
 	while (++i < W_HEIGHT)
 		pthread_join(threads[i], NULL);
 }
-static	void	ft_bs(t_j *tmp, char *add_ptr, int x, int y)
+static	void	ft_bs(t_point *tmp, char *add_ptr, int x, int y)
 {
-	t_j z;
+	t_point z;
 	int i;
 	unsigned char color;
 	double xtemp;
@@ -75,11 +75,14 @@ void	*ft_print_fractal(void	*thread_args)
 	t_args *a;
 
 	a = (t_args*)thread_args;
-	while (a->x++ < W_WIDTH)
-	{
-		a->z.x = (a->x - a->m->x0) * a->m->sc_w - a->m->offx_h;
-		a->z.y = (a->y - a->m->y0) * a->m->sc_h + a->m->offy_w;
-		a->m->fract == 3 ? ft_bs(&a->z, a->add_ptr, a->x, a->y) : 0;
-	}
+	a->z.y = (a->y - a->m->y0) * a->m->sc_h + a->m->offy_w;
+//	while (a->x++ < W_WIDTH)
+//	{
+//		a->z.x = (a->x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+	if (a->m->fract == 1)
+		ft_mandelbrot(a, a->add_ptr);
+//	else if (a->m->fract == 3)
+//		ft_bs(a, a->add_ptr, a->x, a->y);
+//	}
 	return (NULL);
 }

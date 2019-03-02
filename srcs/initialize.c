@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 22:13:41 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 18:10:01 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 18:37:00 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_select_fractol(t_fractol *f)
 {
 	if (f->fractal == 1)
-		ft_mandelbrot_fractol(f);
+		ft_multi_thread_fractals(f);
 	if (f->fractal == 2)
 		ft_julia_fractol(f);
 	if (f->fractal == 3)

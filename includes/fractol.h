@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 18:10:14 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 19:12:11 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,23 @@
 # include <pthread.h>
 # define W_WIDTH 1000
 # define W_HEIGHT 800
-# define MAX_ITERATIONS 200
+# define MAX_ITERATIONS 30
 # define NTHREADS W_HEIGHT * 2
 
-typedef struct s_j
+typedef struct s_point
 {
 	double x;
 	double y;
-}				t_j;
+}				t_point;
 
+typedef struct s_helper
+{
+	t_point z;
+	t_point z_2;
+	double sqr_sum;
+	unsigned char color;
+	int i;
+}				t_helper;
 typedef struct s_f
 {
 	double sc_w;
@@ -49,7 +57,7 @@ typedef struct s_args
 	int y;
 	int x;
 	char *add_ptr;
-	t_j z;
+	t_point z;
 	int i;
 	unsigned char clr;
 }			t_args;
@@ -58,9 +66,9 @@ typedef struct s_jul
 {
 	int x;
 	int y;
-	t_j z0;
-	t_j z1;
-	t_j c;
+	t_point z0;
+	t_point z1;
+	t_point c;
 	int i;
 	char *add_ptr;
 	double x0;
@@ -136,7 +144,7 @@ void	ft_check_fractol(t_fractol *f, char *str);
 void	ft_select_fractol(t_fractol *f);
 // mandelbrot.c
 void	ft_mandelbrot_fractol(t_fractol *f);
-void	*ft_calculate(void *m);
+void	ft_mandelbrot(t_args *a, char *add_ptr);
 // image.c
 void	ft_initialize_image(t_fractol *f);
 void	ft_set_pixel(char *add_ptr, int x, int y, int color);

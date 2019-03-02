@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 22:29:34 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 15:58:14 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 19:08:40 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static	void	ft_init_mondelbrot(t_mondel *m, t_fractol *f)
 	m->scale = f->scale;
 }
 
-void	ft_mandelbrot_fractol(t_fractol *f)
+/*void	ft_mandelbrot_fractol(t_fractol *f)
 {
 	t_mondel m;
 	pthread_t threads[NTHREADS];
@@ -66,44 +66,32 @@ void	ft_mandelbrot_fractol(t_fractol *f)
 	{
 		pthread_join(threads[i], NULL);
 	}
-}
+}*/
 	
-	
-	
-	
-	
-void	*ft_calculate(void *a)
+void	ft_mandelbrot(t_args *a, char *add_ptr)
 {
-	t_thread *m;
+	t_helper h;
 
-	m = (t_thread*)a;
-	while (m->st <= m->end)
+	while (++a->x < W_WIDTH)
 	{
-		m->mon.c_im = m->mon.max_im - ((m->st - m->mon.y0) / m->mon.scale 
-				+ m->mon.y0) * m->mon.im_factor - m->mon.offsety/W_WIDTH;
-		while (m->stx < m->endx)
+		a->z.x = (a->x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+		h.z.x = a->z.x;
+		h.z.y = a->z.y;
+		h.z_2.x = h.z.x * h.z.x;
+		h.z_2.y = h.z.y * h.z.y;
+		h.i = -1;
+		while ((++h.i < MAX_ITERATIONS) && (h.z_2.x + h.z_2.y) < 4)
 		{
-			m->mon.c_re = m->mon.min_re + ((m->stx - m->mon.x0) / m->mon.scale 
-					+ m->mon.x0) * m->mon.re_factor - m->mon.offsetx/W_HEIGHT;
-			m->mon.z_re = m->mon.c_re;
-			m->mon.z_im = m->mon.c_im;
-			m->mon.iterations = -1;	
-			while (++m->mon.iterations < MAX_ITERATIONS)
-			{
-				m->mon.z_re2 = m->mon.z_re * m->mon.z_re;
-				m->mon.z_im2 = m->mon.z_im * m->mon.z_im;
-				if (m->mon.z_re2 + m->mon.z_im2 > 12)
-					break ;
-				m->mon.z_im = 2 * m->mon.z_re * m->mon.z_im + m->mon.c_im;
-				m->mon.z_re = m->mon.z_re2 - m->mon.z_im2 + m->mon.c_re;
-			}
-       		double z = sqrt(m->mon.z_re2 + m->mon.z_im2);
-       		unsigned char brightness = 255. * log2(2 + m->mon.iterations - log2(log2(z))) / log2((double)MAX_ITERATIONS);
-			if (m->mon.iterations != MAX_ITERATIONS)
-				ft_set_pixel(m->add_ptr, m->stx, m->st, ft_color(0, brightness, brightness));
-		m->stx++;
+			h.z.y = 2 * h.z.x * h.z.y + a->z.y;
+			h.z.x = h.z_2.x - h.z_2.y + a->z.x;
+			h.z_2.x = h.z.x * h.z.x;
+			h.z_2.y = h.z.y * h.z.y;
 		}
-	m->st++;
+		if (h.i != MAX_ITERATIONS)
+		{
+			h.sqr_sum = sqrt(h.z_2.y + h.z_2.x);
+			h.color = 255. * log2(2 + h.i - log2(log2(h.sqr_sum))) / log2((double)MAX_ITERATIONS);
+			ft_set_pixel(add_ptr, a->x, a->y, ft_color(0, h.color, h.color));
+		}
 	}
-	return (NULL);
 }
