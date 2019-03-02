@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   carpet.c                                           :+:      :+:    :+:   */
+/*   print_fractals.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 16:05:40 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 20:02:33 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 22:32:00 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	ft_init_info(t_f *m, t_fractol *f)
 	m->y0 = f->y0;
 	m->curx = f->curr_x;
 	m->cury = f->curr_y;
+	m->scale = f->scale;
 }
 
 void	ft_multi_thread_fractals(t_fractol *f)
@@ -88,5 +89,9 @@ void	*ft_print_fractal(void	*thread_args)
 		ft_julia(a, a->add_ptr);
 	else if (a->m->fract == 3)
 		ft_burning_ship(a, a->add_ptr);
+	else if (a->m->fract == 4)
+		ft_random_fractal_one(a, a->add_ptr);
+	else if (a->m->fract == 5)
+		ft_random_fractal_two(a, a->add_ptr);
 	return (NULL);
 }

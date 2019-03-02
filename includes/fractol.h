@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 20:03:06 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 22:30:50 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_f
 	double y0;
 	double	curx;
 	double cury;
+	double scale;
 }				t_f;
 
 typedef struct s_args
@@ -160,9 +161,13 @@ int				ft_mouse_move(int x, int y, t_fractol *f);
 int	ft_key_press(int keycode, t_fractol *f);
 int	ft_key_release(int keycode, t_fractol *f);
 //julia.c
-void	ft_julia_fractol(t_fractol *f);
 void	ft_julia(t_args *a, char *add_ptr);
-//carpet
+//print_fractals.c
 void	ft_multi_thread_fractals(t_fractol *f);
 void	*ft_print_fractal(void *thread_args);
+// carpet.c
+void	ft_sierpenski_carpet(t_args *a, char *add_ptr);
+//random_fractals
+void	ft_random_fractal_one(t_args *a, char *add_ptr);
+void	ft_random_fractal_two(t_args *a, char *add_ptr);
 #endif

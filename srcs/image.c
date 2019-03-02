@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 23:16:33 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 00:12:00 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 22:12:12 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ void	ft_initialize_image(t_fractol *f)
 
 void	ft_set_pixel(char *add_ptr, int x, int y, int color)
 {
-	static int i = 0;
-	i++;
-//	printf("i = %d x = %d y = %d \n",i,x,y);
+//	if (x >= 0 && x <= W_WIDTH && y >= 0 && y <= W_HEIGHT)
 	*(int *)(add_ptr + (x + y * W_WIDTH) * 4) = color;
 }
 

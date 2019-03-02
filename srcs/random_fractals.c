@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   random_fractals.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/01 20:38:05 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 20:26:39 by lsandor-         ###   ########.fr       */
+/*   Created: 2019/03/02 21:38:10 by lsandor-          #+#    #+#             */
+/*   Updated: 2019/03/02 22:41:01 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_julia(t_args *a, char *add_ptr)
+void	ft_random_fractal_one(t_args *a, char *add_ptr)
 {
 	t_helper h;
 
@@ -25,8 +25,33 @@ void	ft_julia(t_args *a, char *add_ptr)
 		while ((++h.i <= MAX_ITERATIONS) && (h.z.x * h.z.x + h.z.y * h.z.y) < 20)
 		{
 			h.xtemp = h.z.x * h.z.x - h.z.y * h.z.y;
-			h.z.y = 2 * h.z.x * h.z.y + a->m->cury;
-			h.z.x = h.xtemp + a->m->curx;
+			h.z.y = sin(2 * h.z.x * h.z.y + 0.340);
+			h.z.x = h.xtemp + 0.630;
+		}
+		if (h.i != MAX_ITERATIONS)
+		{
+			h.sqr_sum = sqrt(h.z.x * h.z.x + h.z.y * h.z.y);
+			h.color = 255. * log2(5 + h.i - log2(log2(h.sqr_sum))) / log2((double)MAX_ITERATIONS);
+			ft_set_pixel(add_ptr, a->x, a->y, ft_color(0, h.color,h.color));
+		}
+	}
+}
+
+void	ft_random_fractal_two(t_args *a, char *add_ptr)
+{
+	t_helper h;
+
+	while (++a->x < W_WIDTH)
+	{
+		a->z.x = (a->x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+		h.z.x = a->z.x;
+		h.z.y = a->z.y;
+		h.i = -1;
+		while ((++h.i <= MAX_ITERATIONS) && (h.z.x * h.z.x + h.z.y * h.z.y) < 20)
+		{
+			h.xtemp = h.z.x * h.z.x - h.z.y * h.z.y;
+			h.z.y = tan(2 * h.z.x * h.z.y -0.4225);
+			h.z.x = h.xtemp + 0.259;
 		}
 		if (h.i != MAX_ITERATIONS)
 		{

@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 20:33:57 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 15:25:12 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 22:40:21 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		ft_mouse_move(int x, int y, t_fractol *f)
 			ft_clear_image(f);
 			f->curr_x = ((y - f->y0) / f->scale) / W_WIDTH;
 			f->curr_y = ((x - f->x0) / f->scale) / W_HEIGHT;
+		//	printf(" x:%f y:%f\n", f->curr_x, f->curr_y);
 			ft_select_fractol(f);
 		}
 	}
