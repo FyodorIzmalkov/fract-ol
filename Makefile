@@ -6,7 +6,7 @@
 #    By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/06 12:40:45 by lsandor-          #+#    #+#              #
-#    Updated: 2019/03/01 21:14:38 by lsandor-         ###   ########.fr        #
+#    Updated: 2019/03/02 17:44:00 by lsandor-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SOURCES_LIST = main.c\
 			   color.c\
 			   hooks.c\
 			   julia.c\
+			   carpet.c\
 
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 

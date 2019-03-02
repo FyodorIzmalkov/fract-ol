@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 15:58:57 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/02 18:10:14 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <pthread.h>
 # define W_WIDTH 1000
 # define W_HEIGHT 800
-# define MAX_ITERATIONS 50
+# define MAX_ITERATIONS 200
 # define NTHREADS W_HEIGHT * 2
 
 typedef struct s_j
@@ -31,6 +31,29 @@ typedef struct s_j
 	double x;
 	double y;
 }				t_j;
+
+typedef struct s_f
+{
+	double sc_w;
+	double sc_h;
+	double offx_h;
+	double offy_w;
+	char fract;
+	double x0;
+	double y0;
+}				t_f;
+
+typedef struct s_args
+{
+	t_f *m;
+	int y;
+	int x;
+	char *add_ptr;
+	t_j z;
+	int i;
+	unsigned char clr;
+}			t_args;
+
 typedef struct s_jul
 {
 	int x;
@@ -131,4 +154,7 @@ void	ft_julia_fractol(t_fractol *f);
 void	*ft_julia(void *a);
 void	ft_julia1(void *a);
 void	ft_julia2(void *a);
+//carpet
+void	ft_multi_thread_fractals(t_fractol *f);
+void	*ft_print_fractal(void *thread_args);
 #endif
