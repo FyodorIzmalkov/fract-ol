@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 16:05:40 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 14:50:51 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 15:03:40 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void	ft_multi_thread_fractals(t_fractol *f)
 	{
 		args[i].y = i;
 		args[i].m = &m;
-		//args[i].add_ptr = f->add_ptr;
-		args[i].i = -1;
 		pthread_create(&threads[i], NULL, ft_print_fractal , (void*)&args[i]);
 	}
 	i = -1;
@@ -55,16 +53,16 @@ static	void	ft_burning_ship(t_args *a)
 	h.x = -1;
 	while (++h.x < W_WIDTH)
 	{
-		a->z.x = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
-		h.z.x = a->z.x;
-		h.z.y = a->z.y;
+		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+		h.z.x = h.zx;
+		h.z.y = a->zy;
 		h.z_2.x = h.z.x * h.z.x;
 		h.z_2.y = h.z.y * h.z.y;
 		h.i = -1;
 		while ((++h.i < MAX_ITERATIONS) && (h.z_2.x + h.z_2.y) < 20)
 		{
-			h.xtemp = h.z_2.x - h.z_2.y + a->z.x;
-			h.z.y = fabs(2 * h.z.x * h.z.y) + a->z.y;
+			h.xtemp = h.z_2.x - h.z_2.y + h.zx;
+			h.z.y = fabs(2 * h.z.x * h.z.y) + a->zy;
 			h.z.x = fabs(h.xtemp);
 			h.z_2.x = h.z.x * h.z.x;
 			h.z_2.y = h.z.y * h.z.y;
@@ -83,7 +81,7 @@ void	*ft_print_fractal(void	*thread_args)
 	t_args *a;
 
 	a = (t_args*)thread_args;
-	a->z.y = (a->y - a->m->y0) * a->m->sc_h + a->m->offy_w;
+	a->zy = (a->y - a->m->y0) * a->m->sc_h + a->m->offy_w;
 	if (a->m->fract == 1)
 		ft_mandelbrot(a);
 	else if (a->m->fract == 2)

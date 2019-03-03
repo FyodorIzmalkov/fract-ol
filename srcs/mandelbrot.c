@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 22:29:34 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 14:44:46 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 15:05:22 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ void	ft_mandelbrot(t_args *a)
 	h.x = -1;
 	while (++h.x < W_WIDTH)
 	{
-		a->z.x = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
-		h.z.x = a->z.x;
-		h.z.y = a->z.y;
+		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+		h.z.x = h.zx;
+		h.z.y = a->zy;
 		h.z_2.x = h.z.x * h.z.x;
 		h.z_2.y = h.z.y * h.z.y;
 		h.i = -1;
 		while ((++h.i < MAX_ITERATIONS) && (h.z_2.x + h.z_2.y) < 4)
 		{
-			h.z.y = 2 * h.z.x * h.z.y + a->z.y;
-			h.z.x = h.z_2.x - h.z_2.y + a->z.x;
+			h.z.y = 2 * h.z.x * h.z.y + a->zy;
+			h.z.x = h.z_2.x - h.z_2.y + h.zx;
 			h.z_2.x = h.z.x * h.z.x;
 			h.z_2.y = h.z.y * h.z.y;
 		}

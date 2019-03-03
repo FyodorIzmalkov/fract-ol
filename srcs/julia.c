@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 20:38:05 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 14:48:33 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 15:03:51 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	ft_julia(t_args *a)
 	h.x = -1;
 	while (++h.x < W_WIDTH)
 	{
-		a->z.x = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
-		h.z.x = a->z.x;
-		h.z.y = a->z.y;
+		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+		h.z.x = h.zx;
+		h.z.y = a->zy;
 		h.i = -1;
 		while ((++h.i <= MAX_ITERATIONS) && (h.z.x * h.z.x + h.z.y * h.z.y) < 20)
 		{

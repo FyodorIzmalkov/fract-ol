@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 21:38:10 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 14:50:21 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 15:05:06 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	ft_random_fractal_two(t_args *a)
 	h.x = -1;
 	while (++h.x < W_WIDTH)
 	{
-		a->z.x = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
-		h.z.x = a->z.x;
-		h.z.y = a->z.y;
+		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+		h.z.x = h.zx;
+		h.z.y = a->zy;
 		h.i = -1;
 		while ((++h.i <= MAX_ITERATIONS) && (h.z.x * h.z.x + h.z.y * h.z.y) < 20)
 		{
@@ -45,9 +45,9 @@ void	ft_random_fractal_three(t_args *a)
 	h.x = -1;
 	while (++h.x < W_WIDTH)
 	{
-		a->z.x = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
-		h.z.x = a->z.x;
-		h.z.y = a->z.y;
+		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+		h.z.x = h.zx;
+		h.z.y = a->zy;
 		h.i = -1;
 		while ((++h.i <= MAX_ITERATIONS) && (h.z.x * h.z.x + h.z.y * h.z.y) < 4)
 		{
@@ -71,9 +71,9 @@ void	ft_random_fractal_four(t_args *a)
 	h.x = -1;
 	while (++h.x < W_WIDTH)
 	{
-		a->z.x = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
-		h.z.x = a->z.x;
-		h.z.y = a->z.y;
+		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+		h.z.x = h.zx;
+		h.z.y = a->zy;
 		h.i = -1;
 		while ((++h.i <= MAX_ITERATIONS) && (h.z.x * h.z.x + h.z.y * h.z.y) < 4)
 		{
@@ -97,9 +97,9 @@ void	ft_random_fractal_five(t_args *a)
 	h.x = -1;
 	while (++h.x < W_WIDTH)
 	{
-		a->z.x = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
-		h.z.x = a->z.x;
-		h.z.y = a->z.y;
+		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+		h.z.x = h.zx;
+		h.z.y = a->zy;
 		h.i = -1;
 		while ((++h.i <= MAX_ITERATIONS) && (h.z.x * h.z.x + h.z.y * h.z.y) < 4)
 		{

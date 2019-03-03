@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 14:50:36 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 15:00:48 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_point
 
 typedef struct s_helper
 {
+	double zx;
 	t_point z;
 	t_point z_2;
 	double sqr_sum;
@@ -63,8 +64,7 @@ typedef struct s_args
 {
 	t_options *m;
 	int y;
-	t_point z;
-	int i;
+	double zy;
 }			t_args;
 
 typedef struct s_fractol
