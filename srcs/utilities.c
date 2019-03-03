@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:52 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 22:16:24 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 23:04:08 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void			ft_check_fractol(t_fractol *f, char *str)
 static	void	ft_put_str2(t_fractol *f)
 {
 	mlx_string_put(f->mlx_ptr, f->mlx_win, 1005, 180, 0xFFFFFF,
-			"| R - to reset setting to defaults             |");
+			"| R - to reset settings to defaults            |");
 	mlx_string_put(f->mlx_ptr, f->mlx_win, 1005, 195, 0xFFFFFF,
 			"o----------------------------------------------o");
 }
