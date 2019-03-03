@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 13:48:52 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 14:50:36 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ typedef struct s_options
 	double cury;
 	double *scale;
 	unsigned char clr;
+	char *add_ptr;
 }				t_options;
 
 typedef struct s_args
 {
 	t_options *m;
 	int y;
-	char *add_ptr;
 	t_point z;
 	int i;
 }			t_args;
@@ -94,7 +94,7 @@ void	ft_check_fractol(t_fractol *f, char *str);
 // initialize.c
 void	ft_select_fractol(t_fractol *f);
 // mandelbrot.c
-void	ft_mandelbrot(t_args *a, char *add_ptr);
+void	ft_mandelbrot(t_args *a);
 // image.c
 void	ft_initialize_image(t_fractol *f);
 void	ft_set_pixel(char *add_ptr, int x, int y, int color);
@@ -108,15 +108,15 @@ int				ft_mouse_move(int x, int y, t_fractol *f);
 int	ft_key_press(int keycode, t_fractol *f);
 int	ft_key_release(int keycode, t_fractol *f);
 //julia.c
-void	ft_julia(t_args *a, char *add_ptr);
+void	ft_julia(t_args *a);
 //print_fractals.c
 void	ft_multi_thread_fractals(t_fractol *f);
 void	*ft_print_fractal(void *thread_args);
 // carpet.c
-void	ft_carpet(t_args *a, char *add_ptr);
+void	ft_carpet(t_args *a);
 //random_fractals
-void	ft_random_fractal_two(t_args *a, char *add_ptr);
-void	ft_random_fractal_three(t_args *a, char *add_ptr);
-void	ft_random_fractal_four(t_args *a, char *add_ptr);
-void	ft_random_fractal_five(t_args *a, char *add_ptr);
+void	ft_random_fractal_two(t_args *a);
+void	ft_random_fractal_three(t_args *a);
+void	ft_random_fractal_four(t_args *a);
+void	ft_random_fractal_five(t_args *a);
 #endif

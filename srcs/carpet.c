@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 23:53:29 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 13:50:48 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 14:49:29 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int ft_if_filled(int x, int y)
     return (1);
 }
 
-void	ft_carpet(t_args *a, char *add_ptr)
+void	ft_carpet(t_args *a)
 {
 	int x;
 	(*a->m->scale) >= 5 ? (*a->m->scale) = 1.6 : 0;
@@ -33,6 +33,6 @@ void	ft_carpet(t_args *a, char *add_ptr)
 	while (++x <W_WIDTH)
 	{
 		if (ft_if_filled(x / (*a->m->scale), a->y / (*a->m->scale)))
-			ft_set_pixel(add_ptr, x, a->y, 0x00FFFFFF);
+			ft_set_pixel(a->m->add_ptr, x, a->y, 0x00FFFFFF);
 	}
 }
