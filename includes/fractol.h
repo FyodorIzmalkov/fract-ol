@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 13:11:24 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 13:48:52 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ typedef struct s_helper
 	double xtemp;
 	unsigned char color;
 	int i;
+	int x;
 }				t_helper;
-typedef struct s_f
+
+typedef struct s_options
 {
 	double sc_w;
 	double sc_h;
@@ -53,63 +55,17 @@ typedef struct s_f
 	double	curx;
 	double cury;
 	double *scale;
-}				t_f;
+	unsigned char clr;
+}				t_options;
 
 typedef struct s_args
 {
-	t_f *m;
+	t_options *m;
 	int y;
-	int x;
 	char *add_ptr;
 	t_point z;
 	int i;
-	unsigned char clr;
 }			t_args;
-
-typedef struct s_jul
-{
-	int x;
-	int y;
-	t_point z0;
-	t_point z1;
-	t_point c;
-	int i;
-	char *add_ptr;
-	double x0;
-	double y0;
-	double scale;
-	double offsetx;
-	double offsety;
-	double z;
-	unsigned char clr;
-}				t_jul;
-
-typedef struct s_mondel
-{
-	double	min_re;
-	double	max_re;
-	double	min_im;
-	double	max_im;
-	double	re_factor;
-	double	im_factor;
-	double	c_re;
-	double	c_im;
-	double	z_re;
-	double	z_im;
-	double	z_re2;
-	double	z_im2;
-	char	is_inside;
-	int	 y;
-	int x;
-	double iterations;
-	float log_zn;
-	float nu;
-	double x0;
-	double y0;
-	double offsetx;
-	double offsety;
-	double scale;
-}				t_mondel;
 
 typedef struct s_fractol
 {
@@ -131,15 +87,6 @@ typedef struct s_fractol
 	double curr_y;
 }		t_fractol;
 
-typedef struct s_thread
-{
-	t_mondel mon;
-	int st;
-	int end;
-	int stx;
-	int endx;
-	char *add_ptr;
-}				t_thread;
 // utilities.c
 int	ft_exit_error(int error);
 void	ft_exit_incorrect_name(void);

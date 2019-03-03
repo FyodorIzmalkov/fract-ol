@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 22:29:34 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 19:30:38 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 13:49:34 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ void	ft_mandelbrot(t_args *a, char *add_ptr)
 {
 	t_helper h;
 
-	while (++a->x < W_WIDTH)
+	h.x = -1;
+	while (++h.x < W_WIDTH)
 	{
-		a->z.x = (a->x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+		a->z.x = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
 		h.z.x = a->z.x;
 		h.z.y = a->z.y;
 		h.z_2.x = h.z.x * h.z.x;
@@ -35,7 +36,7 @@ void	ft_mandelbrot(t_args *a, char *add_ptr)
 		{
 			h.sqr_sum = sqrt(h.z_2.y + h.z_2.x);
 			h.color = 255. * log2(2 + h.i - log2(log2(h.sqr_sum))) / log2((double)MAX_ITERATIONS);
-			ft_set_pixel(add_ptr, a->x, a->y, ft_color(0, h.color, h.color));
+			ft_set_pixel(add_ptr, h.x, a->y, ft_color(0, h.color, h.color));
 		}
 	}
 }
