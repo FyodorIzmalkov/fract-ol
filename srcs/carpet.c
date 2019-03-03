@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 23:53:29 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 19:09:28 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 19:37:50 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void	ft_carpet(t_args *a)
 		if (ft_if_filled(x / (*a->m->scale), a->y / (*a->m->scale)))
 		{
 			if (a->m->set == 0)
-				ft_set_pixel(a->m->add_ptr, x, a->y, 0x00FFFFFF);
+				*(int *)(a->m->add_ptr + (x + a->y * W_WIDTH) * 4) = 0x00FFFFFF;
 			else if (a->m->set == 1)
-				ft_set_pixel(a->m->add_ptr, x, a->y, 0x0004eab8);
+				*(int *)(a->m->add_ptr + (x + a->y * W_WIDTH) * 4) = 0x0004eab8;
 			else
-				ft_set_pixel(a->m->add_ptr, x, a->y, 0x00e20faa);
+				*(int *)(a->m->add_ptr + (x + a->y * W_WIDTH) * 4) = 0x00e20faa;
 		}
 	}
 }

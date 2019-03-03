@@ -6,7 +6,7 @@
 #    By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/06 12:40:45 by lsandor-          #+#    #+#              #
-#    Updated: 2019/03/02 21:43:21 by lsandor-         ###   ########.fr        #
+#    Updated: 2019/03/03 19:35:48 by lsandor-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,6 @@ SOURCES_LIST = main.c\
 			   utilities.c\
 			   initialize.c\
 			   mandelbrot.c\
-			   image.c\
 			   color.c\
 			   hooks.c\
 			   julia.c\

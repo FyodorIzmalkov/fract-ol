@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:53:52 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 15:44:36 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 21:31:54 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,37 @@ void	ft_check_fractol(t_fractol *f, char *str)
 		f->fractal = 7;
 	else if (f->fractal == -1)
 		ft_exit_incorrect_name();
+}
+static	void ft_put_str2(t_fractol *f)
+{	
+	mlx_string_put(f->mlx_ptr, f->mlx_win, 1005, 180, 0xFFFFFF,
+			"| R - to reset setting to defaults             |");
+	mlx_string_put(f->mlx_ptr, f->mlx_win, 1005, 195, 0xFFFFFF,
+			"o----------------------------------------------o");
+}
+void	ft_put_string_to_window(t_fractol *f)
+{
+	char *num;
+
+	num = ft_itoa(f->iter);
+	mlx_string_put(f->mlx_ptr, f->mlx_win, 1005, 5, 0xFFFFFF,
+			"o----------------------------------------------o");
+	mlx_string_put(f->mlx_ptr, f->mlx_win, 1005, 20, 0xFFFFFF,
+			"| + / - to change fractals                     |");
+	mlx_string_put(f->mlx_ptr, f->mlx_win, 1005, 40, 0xFFFFFF,
+			"| NUM 1 to 9 - to change color sets            |");
+	mlx_string_put(f->mlx_ptr, f->mlx_win, 1005, 60, 0xFFFFFF,
+			"| Scrool with mouse to zoom in and out         |");
+	mlx_string_put(f->mlx_ptr, f->mlx_win, 1005, 80, 0xFFFFFF,
+			"| C - to stop Julia's set changing             |");
+	mlx_string_put(f->mlx_ptr, f->mlx_win, 1005, 100, 0xFFFFFF,
+			"| ARROWS - to move the image                   |");
+	mlx_string_put(f->mlx_ptr, f->mlx_win, 1005, 120, 0xFFFFFF,
+			"| 1 - to increase max iterations               |");
+	mlx_string_put(f->mlx_ptr, f->mlx_win, 1005, 140, 0xFFFFFF,
+			"| 2 - to decrease max iterations               |");
+	mlx_string_put(f->mlx_ptr, f->mlx_win, 1005, 160, 0xFFFFFF,
+			"| Current iterations number:                   |");
+	mlx_string_put(f->mlx_ptr, f->mlx_win, 1310, 160, 0xFFFFFF, num);
+	ft_put_str2(f);
 }

@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 23:56:32 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 18:57:23 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 21:40:47 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,20 @@ int	ft_clr(t_helper *h, char set)
 	unsigned char color;
 
 	h->sqr_sum = sqrt(h->z_2.y + h->z_2.x);
-	color = 255. * log2(4 + h->i - log2(log2(h->sqr_sum))) / log2((double)MAX_ITERATIONS);
+	color = 255. * log2(4 + h->i - log2(log2(h->sqr_sum))) / 
+		log2((double)h->iter);
 	if (set == 0)
 		return (ft_color(0, color, color));
 	else if (set == 1)
-		return (ft_color(255, color, color));
+		return (ft_color(color, 10, 0));
 	else if (set == 2)
 		return (ft_color(color, 0, color));
 	else if (set == 3)
-		return (ft_color(color, 200, color));
+		return (ft_color(0, color, 0));
 	else if (set == 4)
 		return (ft_color(color, color, 0));
 	else if (set == 5)
-		return (ft_color(color, color, 255));
+		return (ft_color(0, 0, color));
 	else if (set == 6)
 		return (ft_color(10, color, 150));
 	else if (set == 7)

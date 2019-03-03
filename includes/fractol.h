@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 18:30:31 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 21:01:10 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 # include "libft.h"
 # include <stdio.h>
 # include <pthread.h>
+# define F_WIDTH 1500
 # define W_WIDTH 1000
 # define W_HEIGHT 800
-# define MAX_ITERATIONS 100
 # define NTHREADS W_HEIGHT * 2
 
 typedef struct s_point
@@ -42,6 +42,7 @@ typedef struct s_helper
 	unsigned char color;
 	int i;
 	int x;
+	int iter;
 }				t_helper;
 
 typedef struct s_options
@@ -60,6 +61,7 @@ typedef struct s_options
 	double x1;
 	double y1;
 	char set;
+	int iter;
 }				t_options;
 
 typedef struct s_args
@@ -90,20 +92,20 @@ typedef struct s_fractol
 	double x1;
 	double y1;
 	char set;
+	int	iter;
 }		t_fractol;
 
 // utilities.c
 int	ft_exit_error(int error);
 void	ft_exit_incorrect_name(void);
 void	ft_check_fractol(t_fractol *f, char *str);
+void	ft_put_string_to_window(t_fractol *f);
 // initialize.c
 void	ft_select_fractol(t_fractol *f);
+void	ft_initialize_fractol(t_fractol *f);
+void	ft_initialize_image(t_fractol *f);
 // mandelbrot.c
 void	ft_mandelbrot(t_args *a);
-// image.c
-void	ft_initialize_image(t_fractol *f);
-void	ft_set_pixel(char *add_ptr, int x, int y, int color);
-void	ft_clear_image(t_fractol *f);
 //color.c
 int		ft_color(unsigned char red, unsigned char green, unsigned char blue);
 int		ft_clr(t_helper *h, char set);
@@ -111,7 +113,6 @@ int		ft_clr(t_helper *h, char set);
 int	ft_mouse_press(int button, int x, int y, t_fractol *f);
 int				ft_mouse_move(int x, int y, t_fractol *f);
 int	ft_key_press(int keycode, t_fractol *f);
-int	ft_key_release(int keycode, t_fractol *f);
 int	ft_close(t_fractol *f);
 //julia.c
 void	ft_julia(t_args *a);

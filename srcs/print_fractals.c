@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 16:05:40 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 19:05:57 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 21:16:33 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static	void	ft_burning_ship(t_args *a)
 	t_helper h;
 
 	h.x = -1;
+	h.iter = a->m->iter;
 	while (++h.x < W_WIDTH)
 	{
 		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h - a->m->x1;
@@ -25,7 +26,7 @@ static	void	ft_burning_ship(t_args *a)
 		h.z_2.x = h.z.x * h.z.x;
 		h.z_2.y = h.z.y * h.z.y;
 		h.i = -1;
-		while ((++h.i < MAX_ITERATIONS) && (h.z_2.x + h.z_2.y) < 20)
+		while ((++h.i < a->m->iter) && (h.z_2.x + h.z_2.y) < 20)
 		{
 			h.xtemp = h.z_2.x - h.z_2.y + h.zx;
 			h.z.y = fabs(2 * h.z.x * h.z.y) + a->zy;
@@ -33,7 +34,7 @@ static	void	ft_burning_ship(t_args *a)
 			h.z_2.x = h.z.x * h.z.x;
 			h.z_2.y = h.z.y * h.z.y;
 		}
-		if (h.i != MAX_ITERATIONS)
+		if (h.i != a->m->iter)
 			*(int *)(a->m->add_ptr + (h.x + a->y * W_WIDTH) * 4) = ft_clr(&h, a->m->set);
 	}
 }
@@ -54,6 +55,7 @@ static void	ft_init_options(t_options *m, t_fractol *f)
 	m->x1 = f->x1;
 	m->y1 = f->y1;
 	m->set = f->set;
+	m->iter = f->iter;
 }
 
 void	ft_multi_thread_fractals(t_fractol *f)
@@ -63,6 +65,8 @@ void	ft_multi_thread_fractals(t_fractol *f)
 	t_args	args[W_HEIGHT];
 	int i;
 
+	mlx_clear_window (f->mlx_ptr, f->mlx_win);
+	ft_put_string_to_window(f);
 	ft_init_options(&m, f);
 	i = -1;
 	while (++i < W_HEIGHT)
