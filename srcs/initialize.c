@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 22:13:41 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 21:53:39 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 23:07:22 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_initialize_fractol(t_fractol *f)
 	f->set = 0;
 	f->offsety = 0;
 	f->offsetx = 0;
-	f->iter = 100;
+	f->iter = 35;
 }
 
 void	ft_initialize_image(t_fractol *f)
