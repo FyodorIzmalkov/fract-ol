@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 23:56:32 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 22:12:42 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 22:32:29 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	ft_color(unsigned char red, unsigned char green, unsigned char blue)
 {
 	int color;
 
+	color = 0;
 	color = color >> 16 | red;
 	color = color << 8 | green;
 	color = color << 8 | blue;

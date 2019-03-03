@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 16:05:40 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 22:14:28 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 22:32:51 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,6 @@ void			*ft_print_fractal(void *thread_args)
 		flag = 1;
 	}
 	a->zy = (a->y - a->m->y0) * a->m->sc_h + a->m->offy_w - a->m->y1;
-	p[a->m->fract](a);
+	p[(int)a->m->fract](a);
 	return (NULL);
 }
