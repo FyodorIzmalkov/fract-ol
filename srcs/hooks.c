@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 20:33:57 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 17:51:36 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 18:47:43 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,15 @@ int		ft_key_press(int keycode, t_fractol *f)
 	keycode == 124 ? f->x1 -= 0.5 / f->scale : 0;
 	keycode == 126 ? f->y1 += 0.5 / f->scale : 0;
 	keycode == 125 ? f->y1 -= 0.5 / f->scale : 0;
+	keycode == 83 ? f->set = 0 : 0;
+	keycode == 84 ? f->set = 1 : 0;
+	keycode == 85 ? f->set = 2 : 0;
+	keycode == 86 ? f->set = 3 : 0;
+	keycode == 87 ? f->set = 4 : 0;
+	keycode == 88 ? f->set = 5 : 0;
+	keycode == 89 ? f->set = 6 : 0;
+	keycode == 91 ? f->set = 7 : 0;
+	keycode == 92 ? f->set = 8 : 0;
 	keycode == 53 ? exit(0) : 0;
 	ft_select_fractol(f);
 	return (0);

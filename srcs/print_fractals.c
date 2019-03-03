@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 16:05:40 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 17:54:12 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 18:31:25 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	ft_init_options(t_options *m, t_fractol *f)
 	m->add_ptr = f->add_ptr;
 	m->x1 = f->x1;
 	m->y1 = f->y1;
+	m->set = f->set;
 }
 
 void	ft_multi_thread_fractals(t_fractol *f)
@@ -82,11 +83,11 @@ void	ft_multi_thread_fractals(t_fractol *f)
 void	*ft_print_fractal(void	*thread_args)
 {
 	t_args *a;
-	static unsigned flag;
+	static unsigned flag = 0;
 	static void	(*p[9]) (t_args *a);
 
 	a = (t_args*)thread_args;
-	if (flag != 1)
+	if (flag == 0)
 	{
 		p[0] = ft_mandelbrot;
 		p[1] = ft_julia;

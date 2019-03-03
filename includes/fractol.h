@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 17:41:42 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 18:30:31 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ typedef struct s_options
 	double	curx;
 	double cury;
 	double *scale;
-	unsigned char clr;
 	char *add_ptr;
 	double x1;
 	double y1;
+	char set;
 }				t_options;
 
 typedef struct s_args
@@ -89,6 +89,7 @@ typedef struct s_fractol
 	double curr_y;
 	double x1;
 	double y1;
+	char set;
 }		t_fractol;
 
 // utilities.c
@@ -104,8 +105,8 @@ void	ft_initialize_image(t_fractol *f);
 void	ft_set_pixel(char *add_ptr, int x, int y, int color);
 void	ft_clear_image(t_fractol *f);
 //color.c
-void	ft_choose_color(char *add_ptr, int x, int y, double iter);
 int		ft_color(unsigned char red, unsigned char green, unsigned char blue);
+int		ft_clr(t_helper *h, char set);
 //hooks.c
 int	ft_mouse_press(int button, int x, int y, t_fractol *f);
 int				ft_mouse_move(int x, int y, t_fractol *f);

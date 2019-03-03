@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 23:56:32 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 15:19:38 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 18:57:23 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,48 +22,29 @@ int	ft_color(unsigned char red, unsigned char green, unsigned char blue)
 	return (color);
 }
 
-static int		ft_get_light(int start, int end, double percentage)
+int	ft_clr(t_helper *h, char set)
 {
-	return ((int)((1 - percentage) * start + percentage * end));
-}
+	unsigned char color;
 
-static int		ft_get_color(double percentage, int start, int end)
-{
-	int		red;
-	int		green;
-	int		blue;
-
-	percentage = percentage * (MAX_ITERATIONS / 20);
-	red = ft_get_light((start >> 16) & 0xFF, (end >> 16) & 0xFF,
-			percentage);
-	green = ft_get_light((start >> 8) & 0xFF, (end >> 8) & 0xFF,
-			percentage);
-	blue = ft_get_light(start & 0xFF, end & 0xFF, percentage);
-	return ((red << 16) | (green << 8) | blue);
-}
-
-void	ft_choose_color(char *add_ptr, int x, int y, double iter)
-{
-	double percent;
-	int color_start;
-	int color_end;
-	int color;
-	int color_part;
-
-	if (iter <= (MAX_ITERATIONS >> 1) - 1)
-	{
-		percent = iter / (double)((MAX_ITERATIONS >> 1) -1);
-		color_start = 0x000000;
-		color_end = 0xFF0000;
-		//color = (int)(color_end * percent);
-		ft_set_pixel(add_ptr, x, y, ft_get_color(percent, color_start, color_end));
-	}
-	else
-	{
-		percent = iter / (double)MAX_ITERATIONS;
-		color_start = 0xFF0000;
-		color_end = 0xFFFFFF;
-		color = (int)(color_end * percent);
-		ft_set_pixel(add_ptr, x, y, ft_get_color(percent, color_start, color_end));
-	}
+	h->sqr_sum = sqrt(h->z_2.y + h->z_2.x);
+	color = 255. * log2(4 + h->i - log2(log2(h->sqr_sum))) / log2((double)MAX_ITERATIONS);
+	if (set == 0)
+		return (ft_color(0, color, color));
+	else if (set == 1)
+		return (ft_color(255, color, color));
+	else if (set == 2)
+		return (ft_color(color, 0, color));
+	else if (set == 3)
+		return (ft_color(color, 200, color));
+	else if (set == 4)
+		return (ft_color(color, color, 0));
+	else if (set == 5)
+		return (ft_color(color, color, 255));
+	else if (set == 6)
+		return (ft_color(10, color, 150));
+	else if (set == 7)
+		return (ft_color(color, 20, 130));
+	else if (set == 8)
+		return (ft_color(35, 2, color));
+	return (0x00FFFFFF);
 }
