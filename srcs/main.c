@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 21:42:16 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 00:10:15 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 17:16:14 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int argc, char **argv)
 	mlx_hook(f.mlx_win, 3, 0, ft_key_release, &f);
 	mlx_hook(f.mlx_win, 4, 0, ft_mouse_press, &f);
 	mlx_hook(f.mlx_win, 6, 0, ft_mouse_move, &f);
+	mlx_hook(f.mlx_win, 17, 0, ft_close, &f);
 	mlx_loop(f.mlx_ptr);
 	return (0);
 }

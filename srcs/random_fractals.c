@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 21:38:10 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 17:03:18 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 17:54:50 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_random_fractal_two(t_args *a)
 	h.x = -1;
 	while (++h.x < W_WIDTH)
 	{
-		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h - a->m->x1;
 		h.z.x = h.zx;
 		h.z.y = a->zy;
 		h.i = -1;
@@ -45,7 +45,7 @@ void	ft_random_fractal_three(t_args *a)
 	h.x = -1;
 	while (++h.x < W_WIDTH)
 	{
-		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h - a->m->x1;
 		h.z.x = h.zx;
 		h.z.y = a->zy;
 		h.i = -1;
@@ -71,7 +71,7 @@ void	ft_random_fractal_four(t_args *a)
 	h.x = -1;
 	while (++h.x < W_WIDTH)
 	{
-		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h - a->m->x1;
 		h.z.x = h.zx;
 		h.z.y = a->zy;
 		h.i = -1;
@@ -97,7 +97,7 @@ void	ft_random_fractal_five(t_args *a)
 	h.x = -1;
 	while (++h.x < W_WIDTH)
 	{
-		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h - a->m->x1;
 		h.z.x = h.zx;
 		h.z.y = a->zy;
 		h.i = -1;

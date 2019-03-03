@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 23:16:33 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 16:58:46 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 17:25:42 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_initialize_image(t_fractol *f)
 	f->y0 = (double)(W_HEIGHT >> 1);
 	f->curr_x = -0.7;
 	f->curr_y = 0.27;
+	f->x1 = 0;
+	f->y1 = 0;
 	f->scale = 1;
 	f->c_button = 0;
 	f->img_ptr = mlx_new_image(f->mlx_ptr, W_WIDTH, W_HEIGHT);

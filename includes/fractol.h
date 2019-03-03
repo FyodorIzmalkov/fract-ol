@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 16:53:27 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 17:41:42 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct s_options
 	double *scale;
 	unsigned char clr;
 	char *add_ptr;
+	double x1;
+	double y1;
 }				t_options;
 
 typedef struct s_args
@@ -85,6 +87,8 @@ typedef struct s_fractol
 	double scale;
 	double curr_x;
 	double curr_y;
+	double x1;
+	double y1;
 }		t_fractol;
 
 // utilities.c
@@ -107,6 +111,7 @@ int	ft_mouse_press(int button, int x, int y, t_fractol *f);
 int				ft_mouse_move(int x, int y, t_fractol *f);
 int	ft_key_press(int keycode, t_fractol *f);
 int	ft_key_release(int keycode, t_fractol *f);
+int	ft_close(t_fractol *f);
 //julia.c
 void	ft_julia(t_args *a);
 //print_fractals.c

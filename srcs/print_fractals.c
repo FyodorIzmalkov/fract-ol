@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 16:05:40 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 17:02:03 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 17:54:12 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static	void	ft_burning_ship(t_args *a)
 	h.x = -1;
 	while (++h.x < W_WIDTH)
 	{
-		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h;
+		h.zx = (h.x - a->m->x0) * a->m->sc_w - a->m->offx_h - a->m->x1;
 		h.z.x = h.zx;
 		h.z.y = a->zy;
 		h.z_2.x = h.z.x * h.z.x;
@@ -55,6 +55,8 @@ static void	ft_init_options(t_options *m, t_fractol *f)
 	m->cury = f->curr_y;
 	m->scale = &f->scale;
 	m->add_ptr = f->add_ptr;
+	m->x1 = f->x1;
+	m->y1 = f->y1;
 }
 
 void	ft_multi_thread_fractals(t_fractol *f)
@@ -96,7 +98,7 @@ void	*ft_print_fractal(void	*thread_args)
 		p[7] = ft_random_fractal_five;
 		flag = 1;
 	}
-	a->zy = (a->y - a->m->y0) * a->m->sc_h + a->m->offy_w;
+	a->zy = (a->y - a->m->y0) * a->m->sc_h + a->m->offy_w - a->m->y1;
 	p[a->m->fract](a);
 	return (NULL);
 }

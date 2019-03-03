@@ -6,11 +6,17 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 20:33:57 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 23:59:57 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 17:51:36 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int	ft_close(t_fractol *f)
+{
+	(void)f;
+	exit(0);
+}
 
 int	ft_mouse_press(int button, int x, int y, t_fractol *f)
 {
@@ -35,7 +41,7 @@ int		ft_mouse_move(int x, int y, t_fractol *f)
 {
 	if ((x >= 0 && x<= W_WIDTH) && y >= 0 && y <= W_HEIGHT)
 	{
-		if (!f->c_button)
+		if (!f->c_button && f->fractal == 1)
 		{
 			ft_clear_image(f);
 			f->curr_x = ((y - f->y0) / f->scale) / W_WIDTH;
@@ -49,6 +55,7 @@ int		ft_mouse_move(int x, int y, t_fractol *f)
 
 int		ft_key_press(int keycode, t_fractol *f)
 {
+	ft_clear_image(f);
 	if (keycode == 8)
 	{
 		if (!f->c_button)
@@ -56,6 +63,12 @@ int		ft_key_press(int keycode, t_fractol *f)
 		else
 			f->c_button = 0;
 	}
+	keycode == 123 ? f->x1 += 0.5 / f->scale : 0;
+	keycode == 124 ? f->x1 -= 0.5 / f->scale : 0;
+	keycode == 126 ? f->y1 += 0.5 / f->scale : 0;
+	keycode == 125 ? f->y1 -= 0.5 / f->scale : 0;
+	keycode == 53 ? exit(0) : 0;
+	ft_select_fractol(f);
 	return (0);
 }
 
