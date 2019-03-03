@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 20:38:05 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 15:03:51 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 17:01:37 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_julia(t_args *a)
 		{
 			h.sqr_sum = sqrt(h.z.x * h.z.x + h.z.y * h.z.y);
 			h.color = 255. * log2(2 + h.i - log2(log2(h.sqr_sum))) / log2((double)MAX_ITERATIONS);
-			ft_set_pixel(a->m->add_ptr, h.x, a->y, ft_color(0, h.color,h.color));
+			*(int *)(a->m->add_ptr + (h.x + a->y * W_WIDTH) * 4) = ft_color(0, h.color, h.color);
 		}
 	}
 }
