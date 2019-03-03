@@ -6,12 +6,12 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 22:29:34 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 20:56:00 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 22:11:41 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-	
+
 void	ft_mandelbrot(t_args *a)
 {
 	t_helper h;
@@ -34,6 +34,7 @@ void	ft_mandelbrot(t_args *a)
 			h.z_2.y = h.z.y * h.z.y;
 		}
 		if (h.i != a->m->iter)
-			*(int *)(a->m->add_ptr + (h.x + a->y * W_WIDTH) * 4) = ft_clr(&h, a->m->set);
+			*(int *)(a->m->add_ptr + (h.x + a->y * W_WIDTH) * 4) =
+				ft_clr(&h, a->m->set);
 	}
 }

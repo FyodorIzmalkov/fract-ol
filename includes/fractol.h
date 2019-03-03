@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 21:01:10 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 22:02:49 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include "libft.h"
-# include <stdio.h>
 # include <pthread.h>
 # define F_WIDTH 1500
 # define W_WIDTH 1000

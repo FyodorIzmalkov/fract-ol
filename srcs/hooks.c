@@ -6,19 +6,19 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 20:33:57 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 21:45:08 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 22:10:28 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	ft_close(t_fractol *f)
+int			ft_close(t_fractol *f)
 {
 	(void)f;
 	exit(0);
 }
 
-int	ft_mouse_press(int button, int x, int y, t_fractol *f)
+int			ft_mouse_press(int button, int x, int y, t_fractol *f)
 {
 	if (x <= W_WIDTH && y <= W_HEIGHT)
 	{
@@ -35,9 +35,9 @@ int	ft_mouse_press(int button, int x, int y, t_fractol *f)
 	return (0);
 }
 
-int		ft_mouse_move(int x, int y, t_fractol *f)
+int			ft_mouse_move(int x, int y, t_fractol *f)
 {
-	if ((x >= 0 && x<= W_WIDTH) && y >= 0 && y <= W_HEIGHT)
+	if ((x >= 0 && x <= W_WIDTH) && y >= 0 && y <= W_HEIGHT)
 	{
 		if (!f->c_button && f->fractal == 1)
 		{
@@ -49,6 +49,7 @@ int		ft_mouse_move(int x, int y, t_fractol *f)
 	}
 	return (0);
 }
+
 static void	ft_key_press2(int keycode, t_fractol *f)
 {
 	keycode == 69 ? f->fractal++ : 0;
@@ -65,7 +66,7 @@ static void	ft_key_press2(int keycode, t_fractol *f)
 		f->iter++;
 }
 
-int		ft_key_press(int keycode, t_fractol *f)
+int			ft_key_press(int keycode, t_fractol *f)
 {
 	ft_bzero(f->add_ptr, W_WIDTH * W_HEIGHT * 4);
 	if (keycode == 8)
@@ -93,4 +94,3 @@ int		ft_key_press(int keycode, t_fractol *f)
 	ft_select_fractol(f);
 	return (0);
 }
-

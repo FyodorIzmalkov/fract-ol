@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 16:05:40 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 21:16:33 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 22:14:28 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ static	void	ft_burning_ship(t_args *a)
 			h.z_2.y = h.z.y * h.z.y;
 		}
 		if (h.i != a->m->iter)
-			*(int *)(a->m->add_ptr + (h.x + a->y * W_WIDTH) * 4) = ft_clr(&h, a->m->set);
+			*(int *)(a->m->add_ptr + (h.x + a->y * W_WIDTH) * 4) =
+				ft_clr(&h, a->m->set);
 	}
 }
 
-static void	ft_init_options(t_options *m, t_fractol *f)
+static void		ft_init_options(t_options *m, t_fractol *f)
 {
 	m->sc_w = 2.0 / (0.5 * f->scale * W_WIDTH);
 	m->sc_h = 1.2 / (0.5 * f->scale * W_HEIGHT);
@@ -58,14 +59,14 @@ static void	ft_init_options(t_options *m, t_fractol *f)
 	m->iter = f->iter;
 }
 
-void	ft_multi_thread_fractals(t_fractol *f)
+void			ft_multi_thread_fractals(t_fractol *f)
 {
-	t_options m;
-	pthread_t threads[W_HEIGHT];
-	t_args	args[W_HEIGHT];
-	int i;
+	t_options	m;
+	pthread_t	threads[W_HEIGHT];
+	t_args		args[W_HEIGHT];
+	int			i;
 
-	mlx_clear_window (f->mlx_ptr, f->mlx_win);
+	mlx_clear_window(f->mlx_ptr, f->mlx_win);
 	ft_put_string_to_window(f);
 	ft_init_options(&m, f);
 	i = -1;
@@ -80,11 +81,11 @@ void	ft_multi_thread_fractals(t_fractol *f)
 		pthread_join(threads[i], NULL);
 }
 
-void	*ft_print_fractal(void	*thread_args)
+void			*ft_print_fractal(void *thread_args)
 {
-	t_args *a;
-	static unsigned flag = 0;
-	static void	(*p[9]) (t_args *a);
+	t_args			*a;
+	static unsigned	flag = 0;
+	static void		(*p[9]) (t_args *a);
 
 	a = (t_args*)thread_args;
 	if (flag == 0)

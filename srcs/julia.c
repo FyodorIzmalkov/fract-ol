@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 20:38:05 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/03 20:56:05 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 22:11:07 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_julia(t_args *a)
 		h.z_2.y = h.z.y * h.z.y;
 		h.z_2.x = h.z.x * h.z.x;
 		if (h.i != a->m->iter)
-			*(int *)(a->m->add_ptr + (h.x + a->y * W_WIDTH) * 4) = ft_clr(&h, a->m->set);
+			*(int *)(a->m->add_ptr + (h.x + a->y * W_WIDTH) * 4) =
+				ft_clr(&h, a->m->set);
 	}
 }
