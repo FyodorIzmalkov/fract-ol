@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 18:42:45 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 23:58:44 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 13:11:24 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_f
 	double y0;
 	double	curx;
 	double cury;
-	double scale;
+	double *scale;
 }				t_f;
 
 typedef struct s_args
@@ -168,7 +168,6 @@ void	*ft_print_fractal(void *thread_args);
 // carpet.c
 void	ft_carpet(t_args *a, char *add_ptr);
 //random_fractals
-void	ft_random_fractal_one(t_args *a, char *add_ptr);
 void	ft_random_fractal_two(t_args *a, char *add_ptr);
 void	ft_random_fractal_three(t_args *a, char *add_ptr);
 void	ft_random_fractal_four(t_args *a, char *add_ptr);

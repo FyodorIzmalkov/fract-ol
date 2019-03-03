@@ -6,7 +6,7 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 16:05:40 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 23:59:15 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 13:10:37 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	ft_init_info(t_f *m, t_fractol *f)
 	m->y0 = f->y0;
 	m->curx = f->curr_x;
 	m->cury = f->curr_y;
-	m->scale = f->scale;
+	m->scale = &f->scale;
 }
 
 void	ft_multi_thread_fractals(t_fractol *f)

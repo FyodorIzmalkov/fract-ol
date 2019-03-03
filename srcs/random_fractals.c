@@ -6,36 +6,11 @@
 /*   By: lsandor- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 21:38:10 by lsandor-          #+#    #+#             */
-/*   Updated: 2019/03/02 23:40:44 by lsandor-         ###   ########.fr       */
+/*   Updated: 2019/03/03 13:06:05 by lsandor-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	ft_random_fractal_one(t_args *a, char *add_ptr)
-{
-	t_helper h;
-
-	while (++a->x < W_WIDTH)
-	{
-		a->z.x = (a->x - a->m->x0) * a->m->sc_w - a->m->offx_h;
-		h.z.x = a->z.x;
-		h.z.y = a->z.y;
-		h.i = -1;
-		while ((++h.i <= MAX_ITERATIONS) && (h.z.x * h.z.x + h.z.y * h.z.y) < 20)
-		{
-			h.xtemp = h.z.x * h.z.x - h.z.y * h.z.y;
-			h.z.y = 2 * h.z.x * h.z.y + a->m->cury;
-			h.z.x = h.xtemp + a->m->curx;
-		}
-		if (h.i != MAX_ITERATIONS)
-		{
-			h.sqr_sum = sqrt(h.z.x * h.z.x + h.z.y * h.z.y);
-			h.color = 255. * log2(6 + h.i - log2(log2(h.sqr_sum))) / log2((double)MAX_ITERATIONS);
-			ft_set_pixel(add_ptr, a->x, a->y, ft_color(0, h.color,h.color));
-		}
-	}
-}
 
 void	ft_random_fractal_two(t_args *a, char *add_ptr)
 {
